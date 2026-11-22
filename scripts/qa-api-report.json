@@ -1,0 +1,4097 @@
+{
+  "base": "http://127.0.0.1:3001/api",
+  "generatedAt": "2026-11-21T00:05:29",
+  "inventoryRoutes": 381,
+  "tested": 381,
+  "executed": 373,
+  "counts": {
+    "PASS": 287,
+    "SOFT_400": 85,
+    "SKIP_AUTH_FLOW": 4,
+    "SKIP_DESTRUCTIVE": 4,
+    "CONFLICT": 1
+  },
+  "passRatePct": 100.0,
+  "getPassRatePct": 100.0,
+  "moduleCoverage": {
+    "total": 59,
+    "covered": 59,
+    "missing": [],
+    "pct": 100.0
+  },
+  "idsUsed": {
+    "role": "employee",
+    "month": "2026-11",
+    "customer_id": "fin-cust-1",
+    "tax_id": "fin-tax-seed",
+    "inventory_id": "fin-inv-mov-seed",
+    "shift_id": "fin-shift-seed",
+    "collection_id": "cmwp8cpav0065ns32tm0rxuzc",
+    "bank_line_id": "fin-bank-seed",
+    "payroll_posting_id": "fin-pay-post-seed",
+    "ap_proposal_id": "ap-proposal-seed",
+    "close_checklist_id": "fin-close-seed",
+    "receipt_id": "fin-rcpt-seed",
+    "cycle_id": "perf-cycle-seed",
+    "goal_id": "perf-goal-seed",
+    "review_id": "perf-review-seed",
+    "course_id": "cmwp8coj100kkjfaarnot6aw9",
+    "training_enrollment_id": "enr-course-seed",
+    "enrollment_id": "enr-benefit-seed",
+    "benefit_plan_id": "cmwp8cpa8005tns32zl2vlkt0",
+    "file_id": "file-seed-1",
+    "contract_id": "cmwp8cpg9008ens32vvef0k7j",
+    "probation_case_id": "cmwp8coiy00kdjfaajlxwjlh2",
+    "offboarding_case_id": "off-case-seed",
+    "onboarding_case_id": "cmwp8cpbr006sns327m0iwi0f",
+    "advantage_id": "cmwp8cpc30079ns32kphfaomp",
+    "contribution_id": "cmwp8cpc5007ans32cdvqdbbi",
+    "salary_increase_id": "cmwp8cpca007fns32asapo2dq",
+    "staffing_id": "cmwp8cpcl007mns32adq7woq4",
+    "outbox_id": "tg-out-1",
+    "ap_request_id": "cmwp8cp9y005pns32w79da8a3",
+    "profile_change_id": "pcr-demo-1",
+    "structure_id": "cmwp8cpcb007gns32uzfg46x1",
+    "incentive_id": "cmwp8cpc6007cns32nj0h4jy7",
+    "office_id": "cmwp8cpcs007tns32kazjk9yd",
+    "letter_template_id": "cmwp8cpcr007sns32rvr2y89f",
+    "candidate_id": "cmwp8coiz00kgjfaar65lvex5",
+    "interview_id": "iv-seed-1",
+    "org_change_id": "ocr-demo-1",
+    "onboarding_template_id": "cmwp8coj000khjfaatn91bu8y",
+    "rule_id": "cmwp8cpc8007dns32hxib1dsu",
+    "contract_template_id": "cmwp8coix00k9jfaahv4xi3gj",
+    "investigation_id": "cmwp8cpai005zns32y7nawfb6",
+    "job_id": "cmwp8coiz00kejfaag6erlp5b",
+    "run_id": "cmwp8cpcc007hns326bos7x4h",
+    "account_id": "cmwp8cpao0064ns32tdqdom9i",
+    "invoice_id": "fin-inv-seed",
+    "correction_id": "cmwp8cpd00081ns32yjqdj7gi",
+    "swap_id": "swap-demo-1",
+    "compliance_id": "cmwp8cpa9005uns32nzy6t1fm",
+    "department_id": "cmwp8cpbx0072ns32khgbr3l4",
+    "period_id": "fin-period-2026-11",
+    "expense_id": "cmwp8cpak0062ns32lsfgejmc",
+    "attendance_id": "cmwp8cpcw007yns328ciz9w6x",
+    "roster_period_id": "roster-nov-2026",
+    "company_id": "cmwp8cpbw0071ns32m5ixzh4w",
+    "position_id": "cmwp8cpby0074ns32vsx0kd6l",
+    "announcement_id": "cmwp8cpa1005rns32ctcfvk24",
+    "catalogue_id": "ap-cat-rice",
+    "branch_id": "cmwp8cpbv0070ns3287c5lpym",
+    "leave_type_id": "lt-qa-leave-328878",
+    "employee_id": "cmwp8cpab005vns32vk4vm3iu",
+    "approval_id": "cmwp8cojo00kvjfaavvjr0ngf",
+    "policy_id": "cmwp8cphy008rns32bqxsx39c",
+    "holiday_id": "cmwp8cpb8006cns32q83aiqg9",
+    "asset_id": "cmwp8cpa5005sns32sq7btam5",
+    "user_id": "cmwp8cpeh0083ns32lemacnst",
+    "onboarding_task_id": "onb-task-seed",
+    "offboarding_task_id": "off-task-seed",
+    "pip_id": "pip-seed-1",
+    "leave_request_id": "cmwp8cpbf006ins32erqrre7r",
+    "overtime_id": "cmwp8cpc00077ns32plqh39ad",
+    "ticket_id": "cmwp8cpb6006ans32oqq2s6aq",
+    "er_case_id": "cmwp8cpag005yns32e7s67scy",
+    "suggestion_id": "cmwp8cpct007vns322jx92kjt",
+    "letter_id": "cmwp8cpbk006mns32cvh2lvgr",
+    "payslip_id": "cmwp8cp2c005ans32wzv92z3g",
+    "journal_id": "cmwp8cph2008jns32vb7uvjiv",
+    "wallet_id": "cmwp8cp2m005fns323lbccq7p",
+    "ingredient_id": "cmwp8cp2r005gns32uomzqi80",
+    "blackout_id": "cmwp8cpba006dns329wiyxk39",
+    "survey_id": "cmwp8cpcv007wns32gmx3v9h8",
+    "kudo_id": "cmwp8cpch007jns32vzvckhsq",
+    "resignation_id": "cmwp8cpco007qns32hssnvtur",
+    "notification_id": "cmwp8cpbn006pns3237gok2jy",
+    "timesheet_id": "cmwp8cpih008yns320i5mbj9d"
+  },
+  "hardFailures": [],
+  "authFailures": [],
+  "byPrefix": {
+    "/accounts-payable": {
+      "PASS": 5,
+      "SOFT_400": 4
+    },
+    "/announcements": {
+      "PASS": 3
+    },
+    "/ap": {
+      "PASS": 8,
+      "SOFT_400": 3
+    },
+    "/approvals": {
+      "PASS": 2,
+      "SOFT_400": 3
+    },
+    "/assets": {
+      "PASS": 3,
+      "SOFT_400": 1
+    },
+    "/audit": {
+      "PASS": 2
+    },
+    "/auth": {
+      "PASS": 2
+    },
+    "/benefits": {
+      "PASS": 4,
+      "SOFT_400": 1
+    },
+    "/calendar": {
+      "PASS": 1
+    },
+    "/compliance": {
+      "PASS": 5
+    },
+    "/contracts": {
+      "PASS": 6,
+      "SOFT_400": 1
+    },
+    "/dashboard": {
+      "PASS": 1
+    },
+    "/data-quality": {
+      "PASS": 1
+    },
+    "/employees": {
+      "PASS": 9,
+      "SOFT_400": 2
+    },
+    "/er": {
+      "PASS": 9,
+      "SOFT_400": 2
+    },
+    "/expenses": {
+      "PASS": 3
+    },
+    "/files": {
+      "PASS": 4,
+      "SOFT_400": 1
+    },
+    "/finance": {
+      "PASS": 39,
+      "SOFT_400": 23
+    },
+    "/health": {
+      "PASS": 1
+    },
+    "/helpdesk": {
+      "PASS": 3,
+      "SOFT_400": 2
+    },
+    "/holidays": {
+      "PASS": 3
+    },
+    "/integrations": {
+      "PASS": 3,
+      "SOFT_400": 1
+    },
+    "/leave": {
+      "PASS": 8
+    },
+    "/leave-blackouts": {
+      "PASS": 3
+    },
+    "/letters": {
+      "PASS": 2,
+      "SOFT_400": 1
+    },
+    "/notifications": {
+      "PASS": 6,
+      "SOFT_400": 1
+    },
+    "/offboarding": {
+      "PASS": 3,
+      "SOFT_400": 2
+    },
+    "/onboarding": {
+      "PASS": 6,
+      "SOFT_400": 3
+    },
+    "/org": {
+      "PASS": 16,
+      "CONFLICT": 1
+    },
+    "/overtime": {
+      "PASS": 3
+    },
+    "/payroll-config": {
+      "PASS": 33
+    },
+    "/payroll-psc": {
+      "PASS": 5,
+      "SOFT_400": 3
+    },
+    "/payslips": {
+      "PASS": 3,
+      "SOFT_400": 1
+    },
+    "/performance": {
+      "PASS": 6,
+      "SOFT_400": 3
+    },
+    "/policies": {
+      "PASS": 2,
+      "SOFT_400": 2
+    },
+    "/probation": {
+      "PASS": 6,
+      "SOFT_400": 5
+    },
+    "/rbac": {
+      "PASS": 3
+    },
+    "/recognition": {
+      "PASS": 3
+    },
+    "/recruitment": {
+      "PASS": 7,
+      "SOFT_400": 9
+    },
+    "/reports": {
+      "PASS": 4
+    },
+    "/resignations": {
+      "PASS": 3
+    },
+    "/roster": {
+      "PASS": 4,
+      "SOFT_400": 3
+    },
+    "/settings": {
+      "PASS": 15,
+      "SOFT_400": 1
+    },
+    "/suggestions": {
+      "PASS": 2,
+      "SOFT_400": 1
+    },
+    "/surveys": {
+      "PASS": 3,
+      "SOFT_400": 1
+    },
+    "/time": {
+      "PASS": 11,
+      "SOFT_400": 1
+    },
+    "/timesheets": {
+      "PASS": 3
+    },
+    "/training": {
+      "PASS": 3,
+      "SOFT_400": 3
+    },
+    "/users": {
+      "PASS": 3,
+      "SOFT_400": 1
+    },
+    "/workers": {
+      "PASS": 4
+    }
+  },
+  "results": [
+    {
+      "method": "GET",
+      "path": "/accounts-payable/requests",
+      "resolved": "/accounts-payable/requests",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/announcements",
+      "resolved": "/announcements",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/catalogue",
+      "resolved": "/ap/catalogue",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/daily-ingredients",
+      "resolved": "/ap/daily-ingredients",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/petty-cash",
+      "resolved": "/ap/petty-cash",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.1,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/setup",
+      "resolved": "/ap/setup",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/approvals",
+      "resolved": "/approvals",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/assets",
+      "resolved": "/assets",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.8,
+      "note": null,
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/audit",
+      "resolved": "/audit",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/audit/audit.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/audit/export",
+      "resolved": "/audit/export",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/audit/audit.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me",
+      "resolved": "/auth/me",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/benefits/enrollments",
+      "resolved": "/benefits/enrollments",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/benefits/plans",
+      "resolved": "/benefits/plans",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/calendar",
+      "resolved": "/calendar",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/compliance/items",
+      "resolved": "/compliance/items",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/compliance/live-gaps",
+      "resolved": "/compliance/live-gaps",
+      "status": 200,
+      "class": "PASS",
+      "ms": 3.0,
+      "note": null,
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts",
+      "resolved": "/contracts",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts/templates",
+      "resolved": "/contracts/templates",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard/summary",
+      "resolved": "/dashboard/summary",
+      "status": 200,
+      "class": "PASS",
+      "ms": 5.9,
+      "note": null,
+      "file": "modules/dashboard/dashboard.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/data-quality/scan",
+      "resolved": "/data-quality/scan",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.2,
+      "note": null,
+      "file": "modules/data-quality/data-quality.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees",
+      "resolved": "/employees",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/org-changes",
+      "resolved": "/employees/org-changes",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/profile-changes",
+      "resolved": "/employees/profile-changes",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er",
+      "resolved": "/er",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/investigations",
+      "resolved": "/er/investigations",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/settings",
+      "resolved": "/er/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.9,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/expenses/claims",
+      "resolved": "/expenses/claims",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files",
+      "resolved": "/files",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/accounts",
+      "resolved": "/finance/accounts",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/ap-payment-proposals",
+      "resolved": "/finance/ap-payment-proposals",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/bank-lines",
+      "resolved": "/finance/bank-lines",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/close-checklist",
+      "resolved": "/finance/close-checklist",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/collection-batches",
+      "resolved": "/finance/collection-batches",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/customers",
+      "resolved": "/finance/customers",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/integration-events",
+      "resolved": "/finance/integration-events",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/inventory",
+      "resolved": "/finance/inventory",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/invoices",
+      "resolved": "/finance/invoices",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/journals",
+      "resolved": "/finance/journals",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/payroll-postings",
+      "resolved": "/finance/payroll-postings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/periods",
+      "resolved": "/finance/periods",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/receipts",
+      "resolved": "/finance/receipts",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/setup",
+      "resolved": "/finance/setup",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/shifts",
+      "resolved": "/finance/shifts",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/summary",
+      "resolved": "/finance/summary",
+      "status": 200,
+      "class": "PASS",
+      "ms": 3.3,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/tax",
+      "resolved": "/finance/tax",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/wallets",
+      "resolved": "/finance/wallets",
+      "status": 200,
+      "class": "PASS",
+      "ms": 3.0,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "resolved": "/health",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.3,
+      "note": null,
+      "file": "app.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/tickets",
+      "resolved": "/helpdesk/tickets",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/holidays",
+      "resolved": "/holidays",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations",
+      "resolved": "/integrations",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/telegram/connections",
+      "resolved": "/integrations/telegram/connections",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.3,
+      "note": null,
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/telegram/outbox",
+      "resolved": "/integrations/telegram/outbox",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave-blackouts",
+      "resolved": "/leave-blackouts",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/balances",
+      "resolved": "/leave/balances",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.6,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/requests",
+      "resolved": "/leave/requests",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/types",
+      "resolved": "/leave/types",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/letters",
+      "resolved": "/letters",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications",
+      "resolved": "/notifications",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/settings",
+      "resolved": "/notifications/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/unread-count",
+      "resolved": "/notifications/unread-count",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/offboarding/cases",
+      "resolved": "/offboarding/cases",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding",
+      "resolved": "/onboarding",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.1,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/cases",
+      "resolved": "/onboarding/cases",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/templates",
+      "resolved": "/onboarding/templates",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/branches",
+      "resolved": "/org/branches",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/chart",
+      "resolved": "/org/chart",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/companies",
+      "resolved": "/org/companies",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/departments",
+      "resolved": "/org/departments",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/positions",
+      "resolved": "/org/positions",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/overtime",
+      "resolved": "/overtime",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.8,
+      "note": null,
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contract-advantage-templates",
+      "resolved": "/payroll-config/contract-advantage-templates",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contribution-registers",
+      "resolved": "/payroll-config/contribution-registers",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/incentives",
+      "resolved": "/payroll-config/incentives",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/rules",
+      "resolved": "/payroll-config/rules",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.2,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/salary-increases",
+      "resolved": "/payroll-config/salary-increases",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/settings",
+      "resolved": "/payroll-config/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/structures",
+      "resolved": "/payroll-config/structures",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-psc/runs",
+      "resolved": "/payroll-psc/runs",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payslips",
+      "resolved": "/payslips",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/cycles",
+      "resolved": "/performance/cycles",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/goals",
+      "resolved": "/performance/goals",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/reviews",
+      "resolved": "/performance/reviews",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/policies",
+      "resolved": "/policies",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/cases",
+      "resolved": "/probation/cases",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/settings",
+      "resolved": "/probation/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 3.4,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/matrix",
+      "resolved": "/rbac/matrix",
+      "status": 200,
+      "class": "PASS",
+      "ms": 4.6,
+      "note": null,
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/roles",
+      "resolved": "/rbac/roles",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recognition",
+      "resolved": "/recognition",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.8,
+      "note": null,
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment",
+      "resolved": "/recruitment",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/candidates",
+      "resolved": "/recruitment/candidates",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/interviews",
+      "resolved": "/recruitment/interviews?candidateId=cmwp8coiz00kgjfaar65lvex5",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/jobs",
+      "resolved": "/recruitment/jobs",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/staffing-requests",
+      "resolved": "/recruitment/staffing-requests",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/finance-summary",
+      "resolved": "/reports/finance-summary",
+      "status": 200,
+      "class": "PASS",
+      "ms": 4.9,
+      "note": null,
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-monthly",
+      "resolved": "/reports/hr-monthly",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-summary",
+      "resolved": "/reports/hr-summary",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-trends",
+      "resolved": "/reports/hr-trends",
+      "status": 200,
+      "class": "PASS",
+      "ms": 6.0,
+      "note": null,
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/resignations",
+      "resolved": "/resignations",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/periods",
+      "resolved": "/roster/periods",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/shift-codes",
+      "resolved": "/roster/shift-codes",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/approval-chains",
+      "resolved": "/settings/approval-chains",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/letter-templates",
+      "resolved": "/settings/letter-templates",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/office-locations",
+      "resolved": "/settings/office-locations",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/platform",
+      "resolved": "/settings/platform",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/welcome-template",
+      "resolved": "/settings/welcome-template",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/suggestions",
+      "resolved": "/suggestions",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/surveys",
+      "resolved": "/surveys",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance",
+      "resolved": "/time/attendance",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance/today",
+      "resolved": "/time/attendance/today",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/corrections",
+      "resolved": "/time/corrections",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/reconcile",
+      "resolved": "/time/reconcile",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/shift-swaps",
+      "resolved": "/time/shift-swaps",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/timesheets",
+      "resolved": "/timesheets",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/training/courses",
+      "resolved": "/training/courses",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/training/enrollments",
+      "resolved": "/training/enrollments",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.8,
+      "note": null,
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "resolved": "/users",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/users/me",
+      "resolved": "/users/me",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/workers/jobs",
+      "resolved": "/workers/jobs",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts-payable/requests/:id",
+      "resolved": "/accounts-payable/requests/ap-doc-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/daily-ingredients/:id",
+      "resolved": "/ap/daily-ingredients/cmwp8cp2r005gns32uomzqi80",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts/:id",
+      "resolved": "/contracts/cmwp8coix00kbjfaa4a4onr98",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/:id",
+      "resolved": "/employees/emp-01",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/:id",
+      "resolved": "/er/cmwp8cp230052ns32xjt2mgqw",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/investigations/:id",
+      "resolved": "/er/investigations/eri-01",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:id",
+      "resolved": "/files/file-seed-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:id/download",
+      "resolved": "/files/file-seed-1/download",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/invoices/:id",
+      "resolved": "/finance/invoices/fin-inv-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/journals/:id",
+      "resolved": "/finance/journals/cmwp8cp2g005bns32ynyfpd2w",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/wallets/:id",
+      "resolved": "/finance/wallets/cmwp8cp2m005fns323lbccq7p",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/tickets/:id",
+      "resolved": "/helpdesk/tickets/cmwp8cp1w004zns32w1xzs14g",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/requests/:id",
+      "resolved": "/leave/requests/cmwp8cp1j004sns32arhfgzel",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/offboarding/cases/:id",
+      "resolved": "/offboarding/cases/off-case-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/cases/:id",
+      "resolved": "/onboarding/cases/onb-case-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/branches/:id",
+      "resolved": "/org/branches/br-hq",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/companies/:id",
+      "resolved": "/org/companies/co-psc",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "resolved": "/payroll-config/contract-advantage-templates/adv-housing",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contribution-registers/:id",
+      "resolved": "/payroll-config/contribution-registers/cr-health-2026-10",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/incentives/:id",
+      "resolved": "/payroll-config/incentives/inc-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/rules/:id",
+      "resolved": "/payroll-config/rules/sr-basic",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/salary-increases/:id",
+      "resolved": "/payroll-config/salary-increases/sir-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/structures/:id",
+      "resolved": "/payroll-config/structures/ss-standard",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-psc/runs/:id",
+      "resolved": "/payroll-psc/runs/pay-run-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payslips/:id",
+      "resolved": "/payslips/cmwp8cp2c005ans32wzv92z3g",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/cases/:id",
+      "resolved": "/probation/cases/cmwp8coiy00kdjfaajlxwjlh2",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/permissions/:role",
+      "resolved": "/rbac/permissions/employee",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/periods/:id",
+      "resolved": "/roster/periods/roster-nov-2026",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/letter-templates/:id",
+      "resolved": "/settings/letter-templates/ltpl-employment",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.8,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/office-locations/:id",
+      "resolved": "/settings/office-locations/office-hq",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.7,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance/:id",
+      "resolved": "/time/attendance/cmwp8cojb00kpjfaa5ak8bqzw",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests",
+      "resolved": "/accounts-payable/requests",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.2,
+      "note": null,
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/announcements",
+      "resolved": "/announcements",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/catalogue",
+      "resolved": "/ap/catalogue",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"code must be longer than or equal to 1 characters\", \"code must be a string\", \"nameKm must be longer than or equal to 1 characters\", \"nameKm must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/daily-ingredients",
+      "resolved": "/ap/daily-ingredients",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"purchaseDate must be a string\", \"lines must be an array\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/petty-cash",
+      "resolved": "/ap/petty-cash",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"reference must be longer than or equal to 1 characters\", \"reference must be a string\", \"paidAt must be a string\", \"amount must not be less than 0.01\", \"amount must be a number conforming to the specified constraints\"], \"error\"",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "resolved": "/approvals",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property requesterId should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets",
+      "resolved": "/assets",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/2fa/setup",
+      "resolved": "/auth/2fa/setup",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/2fa/verify",
+      "resolved": "/auth/2fa/verify",
+      "status": 200,
+      "class": "SKIP_AUTH_FLOW",
+      "ms": 0,
+      "note": "covered by login harness"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "resolved": "/auth/login",
+      "status": 200,
+      "class": "SKIP_AUTH_FLOW",
+      "ms": 0,
+      "note": "covered by login harness"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "resolved": "/auth/logout",
+      "status": 200,
+      "class": "SKIP_AUTH_FLOW",
+      "ms": 0,
+      "note": "covered by login harness"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/refresh",
+      "resolved": "/auth/refresh",
+      "status": 200,
+      "class": "SKIP_AUTH_FLOW",
+      "ms": 0,
+      "note": "covered by login harness"
+    },
+    {
+      "method": "POST",
+      "path": "/benefits/enrollments",
+      "resolved": "/benefits/enrollments",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"planId must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/benefits/plans",
+      "resolved": "/benefits/plans",
+      "status": 201,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/compliance/items",
+      "resolved": "/compliance/items",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts",
+      "resolved": "/contracts",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"employeeId must be a string\", \"title must be longer than or equal to 1 characters\", \"title must be a string\", \"startDate must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees",
+      "resolved": "/employees",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.6,
+      "note": null,
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/org-changes",
+      "resolved": "/employees/org-changes",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"property employeeCode should not exist\", \"property firstName should not exist\", \"property lastName should not exist\", \"property email should not exist\", \"property departmentId should not exist\", \"property positionId should not",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/profile-changes",
+      "resolved": "/employees/profile-changes",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property employeeCode should not exist\", \"property firstName should not exist\", \"property lastName should not exist\", \"property email should not exist\", \"property departmentId should not exist\", \"property positionId should not",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/er",
+      "resolved": "/er",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/er/investigations",
+      "resolved": "/er/investigations",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.2,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/expenses/claims",
+      "resolved": "/expenses/claims",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/files/upload",
+      "resolved": "/files/upload",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": \"file is required\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/accounts",
+      "resolved": "/finance/accounts",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.8,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines",
+      "resolved": "/finance/bank-lines",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.5,
+      "note": "{\"message\": [\"statementDate must be a string\", \"description must be longer than or equal to 1 characters\", \"description must be a string\", \"amount must be a number conforming to the specified constraints\"], \"error\": \"Bad Request\", \"statusCo",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/close-checklist",
+      "resolved": "/finance/close-checklist",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.1,
+      "note": "{\"message\": [\"period must be a string\", \"itemKey must be longer than or equal to 1 characters\", \"itemKey must be a string\", \"label must be longer than or equal to 1 characters\", \"label must be a string\"], \"error\": \"Bad Request\", \"statusCode",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches",
+      "resolved": "/finance/collection-batches",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.9,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/customers",
+      "resolved": "/finance/customers",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"name must be longer than or equal to 1 characters\", \"name must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory",
+      "resolved": "/finance/inventory",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"itemCode must be longer than or equal to 1 characters\", \"itemCode must be a string\", \"itemName must be longer than or equal to 1 characters\", \"itemName must be a string\", \"type must be one of the following values: receipt, iss",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices",
+      "resolved": "/finance/invoices",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"invoiceNo must be longer than or equal to 1 characters\", \"invoiceNo must be a string\", \"customerId must be a string\", \"businessDate must be a string\", \"net must not be less than 0\", \"net must be a number conforming to the spec",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals",
+      "resolved": "/finance/journals",
+      "status": 201,
+      "class": "PASS",
+      "ms": 4.4,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods",
+      "resolved": "/finance/periods",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"yearMonth must be longer than or equal to 7 characters\", \"yearMonth must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts",
+      "resolved": "/finance/receipts",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"invoiceId must be a string\", \"amount must not be less than 0.01\", \"amount must be a number conforming to the specified constraints\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts",
+      "resolved": "/finance/shifts",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"businessDate must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/tax",
+      "resolved": "/finance/tax",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"kind must be one of the following values: vat_output, vat_input, salary_tax, other\", \"period must be a string\", \"amount must not be less than 0\", \"amount must be a number conforming to the specified constraints\"], \"error\": \"Ba",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/wallets",
+      "resolved": "/finance/wallets",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"customerId must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/tickets",
+      "resolved": "/helpdesk/tickets",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/holidays",
+      "resolved": "/holidays",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/integrations/telegram/outbox",
+      "resolved": "/integrations/telegram/outbox",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property note should not exist\", \"eventType must be longer than or equal to 1 characters\", \"eventType must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave-blackouts",
+      "resolved": "/leave-blackouts",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/requests",
+      "resolved": "/leave/requests",
+      "status": 201,
+      "class": "PASS",
+      "ms": 7.3,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/types",
+      "resolved": "/leave/types",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/letters",
+      "resolved": "/letters",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications",
+      "resolved": "/notifications",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications/mark-all-read",
+      "resolved": "/notifications/mark-all-read",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/offboarding/cases",
+      "resolved": "/offboarding/cases",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"employeeId must be a string\", \"startDate must be a string\", \"lastWorkingDay must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/onboarding/cases",
+      "resolved": "/onboarding/cases",
+      "status": 201,
+      "class": "PASS",
+      "ms": 4.2,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/onboarding/templates",
+      "resolved": "/onboarding/templates",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"name must be longer than or equal to 1 characters\", \"name must be a string\", \"taskDefs must be an array\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/branches",
+      "resolved": "/org/branches",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.8,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/companies",
+      "resolved": "/org/companies",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/departments",
+      "resolved": "/org/departments",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/positions",
+      "resolved": "/org/positions",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/overtime",
+      "resolved": "/overtime",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/contract-advantage-templates",
+      "resolved": "/payroll-config/contract-advantage-templates",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/contribution-registers",
+      "resolved": "/payroll-config/contribution-registers",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/incentives",
+      "resolved": "/payroll-config/incentives",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.2,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/rules",
+      "resolved": "/payroll-config/rules",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/salary-increases",
+      "resolved": "/payroll-config/salary-increases",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/structures",
+      "resolved": "/payroll-config/structures",
+      "status": 201,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs",
+      "resolved": "/payroll-psc/runs",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/cycles",
+      "resolved": "/performance/cycles",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"name must be longer than or equal to 1 characters\", \"name must be a string\", \"startDate must be a string\", \"endDate must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/goals",
+      "resolved": "/performance/goals",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"employeeId must be a string\", \"title must be longer than or equal to 1 characters\", \"title must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/reviews",
+      "resolved": "/performance/reviews",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"employeeId must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/policies",
+      "resolved": "/policies",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property body should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases",
+      "resolved": "/probation/cases",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"employeeId must be a string\", \"startDate must be a string\", \"endDate must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recognition",
+      "resolved": "/recognition",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/candidates",
+      "resolved": "/recruitment/candidates",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property stage should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/interviews",
+      "resolved": "/recruitment/interviews",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"scheduledAt must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/jobs",
+      "resolved": "/recruitment/jobs",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property headcount should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests",
+      "resolved": "/recruitment/staffing-requests",
+      "status": 201,
+      "class": "PASS",
+      "ms": 4.7,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/resignations",
+      "resolved": "/resignations",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/roster/periods",
+      "resolved": "/roster/periods",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"title must be longer than or equal to 1 characters\", \"title must be a string\", \"startDate must be a string\", \"endDate must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/letter-templates",
+      "resolved": "/settings/letter-templates",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/office-locations",
+      "resolved": "/settings/office-locations",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/suggestions",
+      "resolved": "/suggestions",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/surveys",
+      "resolved": "/surveys",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/attendance/check-in",
+      "resolved": "/time/attendance/check-in",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/attendance/check-out",
+      "resolved": "/time/attendance/check-out",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/corrections",
+      "resolved": "/time/corrections",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/shift-swaps",
+      "resolved": "/time/shift-swaps",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"periodId must be a string\", \"counterpartId must be a string\", \"requesterDate must be a valid ISO 8601 date string\", \"counterpartDate must be a valid ISO 8601 date string\", \"reason must be longer than or equal to 1 characters\",",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/training/courses",
+      "resolved": "/training/courses",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"title must be longer than or equal to 1 characters\", \"title must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/training/enrollments",
+      "resolved": "/training/enrollments",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"courseId must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/users",
+      "resolved": "/users",
+      "status": 201,
+      "class": "PASS",
+      "ms": 56.3,
+      "note": null,
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/export",
+      "resolved": "/workers/export",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/punch-reminder",
+      "resolved": "/workers/punch-reminder",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/telegram",
+      "resolved": "/workers/telegram",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/approve",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/approve",
+      "status": 201,
+      "class": "PASS",
+      "ms": 10.6,
+      "note": null,
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/cancel",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/cancel",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 2.0,
+      "note": "{\"message\": \"Cannot cancel from approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/check",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/check",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.7,
+      "note": "{\"message\": \"Cannot check from approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/mark-paid",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/mark-paid",
+      "status": 201,
+      "class": "PASS",
+      "ms": 4.5,
+      "note": null,
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/return",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/return",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 3.1,
+      "note": "{\"message\": \"Cannot return from paid\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/submit",
+      "resolved": "/accounts-payable/requests/cmwp8cp9y005pns32w79da8a3/submit",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 2.5,
+      "note": "{\"message\": \"Cannot submit from paid\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/approve",
+      "resolved": "/approvals/cmwp8cojo00kvjfaavvjr0ngf/approve",
+      "status": 201,
+      "class": "PASS",
+      "ms": 11.7,
+      "note": null,
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/reject",
+      "resolved": "/approvals/cmwp8cojo00kvjfaavvjr0ngf/reject",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 2.6,
+      "note": "{\"message\": \"Approval already approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/return",
+      "resolved": "/approvals/cmwp8cojo00kvjfaavvjr0ngf/return",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 2.7,
+      "note": "{\"message\": \"Approval already approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/:id/assign",
+      "resolved": "/assets/cmwp8cpa5005sns32sq7btam5/assign",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/:id/return",
+      "resolved": "/assets/cmwp8cpa5005sns32sq7btam5/return",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.7,
+      "note": "{\"message\": [\"property note should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/:id/archive",
+      "resolved": "/contracts/cmwp8coix00kbjfaa4a4onr98/archive",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.9,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/:id/renew",
+      "resolved": "/contracts/cmwp8coix00kbjfaa4a4onr98/renew",
+      "status": 201,
+      "class": "PASS",
+      "ms": 5.9,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/org-changes/:id/cancel",
+      "resolved": "/employees/org-changes/ocr-demo-1/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.9,
+      "note": null,
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/profile-changes/:id/cancel",
+      "resolved": "/employees/profile-changes/pcr-demo-1/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.9,
+      "note": null,
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/expenses/claims/:id/cancel",
+      "resolved": "/expenses/claims/cmwp8cpak0062ns32lsfgejmc/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/ap-payment-proposals/:id/mark-paid",
+      "resolved": "/finance/ap-payment-proposals/ap-proposal-seed/mark-paid",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/ap-payment-proposals/:id/post",
+      "resolved": "/finance/ap-payment-proposals/ap-proposal-seed/post",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.7,
+      "note": "{\"message\": \"Cannot post from status paid\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines/:id/ignore",
+      "resolved": "/finance/bank-lines/fin-bank-seed/ignore",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines/:id/match",
+      "resolved": "/finance/bank-lines/fin-bank-seed/match",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"property note should not exist\", \"matchedBatchId must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/confirm",
+      "resolved": "/finance/collection-batches/cmwp8cpav0065ns32tm0rxuzc/confirm",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property note should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/reject",
+      "resolved": "/finance/collection-batches/cmwp8cpav0065ns32tm0rxuzc/reject",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/submit",
+      "resolved": "/finance/collection-batches/cmwp8cpav0065ns32tm0rxuzc/submit",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": \"Cannot submit from status rejected\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory/:id/approve",
+      "resolved": "/finance/inventory/fin-inv-mov-seed/approve",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory/:id/reject",
+      "resolved": "/finance/inventory/fin-inv-mov-seed/reject",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.7,
+      "note": "{\"message\": \"Cannot decide from status approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices/:id/post",
+      "resolved": "/finance/invoices/fin-inv-seed/post",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.9,
+      "note": "{\"message\": \"Cannot post from status posted\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices/:id/void",
+      "resolved": "/finance/invoices/fin-inv-seed/void",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals/:id/post",
+      "resolved": "/finance/journals/cmwp8cpb00066ns32k1jrev6n/post",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.6,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals/:id/reverse",
+      "resolved": "/finance/journals/cmwp8cpb00066ns32k1jrev6n/reverse",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/payroll-postings/:id/post",
+      "resolved": "/finance/payroll-postings/fin-pay-post-seed/post",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/payroll-postings/:id/void",
+      "resolved": "/finance/payroll-postings/fin-pay-post-seed/void",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods/:id/lock",
+      "resolved": "/finance/periods/fin-period-2026-11/lock",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods/:id/soft-close",
+      "resolved": "/finance/periods/fin-period-2026-11/soft-close",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": \"Locked period cannot be reopened\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts/:id/confirm",
+      "resolved": "/finance/receipts/fin-rcpt-seed/confirm",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property note should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts/:id/reject",
+      "resolved": "/finance/receipts/fin-rcpt-seed/reject",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts/:id/close",
+      "resolved": "/finance/shifts/fin-shift-seed/close",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"countedCash must not be less than 0\", \"countedCash must be a number conforming to the specified constraints\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts/:id/review",
+      "resolved": "/finance/shifts/fin-shift-seed/review",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": \"Cannot review from status open\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/tax/:id/remit",
+      "resolved": "/finance/tax/fin-tax-seed/remit",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property note should not exist\", \"amount must not be less than 0.01\", \"amount must be a number conforming to the specified constraints\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/wallets/:id/movements",
+      "resolved": "/finance/wallets/cmwp8cp2m005fns323lbccq7p/movements",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"type must be one of the following values: load, redeem, bonus, reserve, release\", \"amount must not be less than 0.01\", \"amount must be a number conforming to the specified constraints\"], \"error\": \"Bad Request\", \"statusCode\": 4",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/tickets/:id/messages",
+      "resolved": "/helpdesk/tickets/cmwp8cpb6006ans32oqq2s6aq/messages",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property note should not exist\", \"message must be longer than or equal to 1 characters\", \"message must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/requests/:id/cancel",
+      "resolved": "/leave/requests/cmwp8cpbf006ins32erqrre7r/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.1,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/offboarding/cases/:id/exit-interview",
+      "resolved": "/offboarding/cases/off-case-seed/exit-interview",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/overtime/:id/cancel",
+      "resolved": "/overtime/cmwp8cpc00077ns32plqh39ad/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.2,
+      "note": null,
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/salary-increases/:id/apply",
+      "resolved": "/payroll-config/salary-increases/cmwp8cpca007fns32asapo2dq/apply",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.3,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/approve-md",
+      "resolved": "/payroll-psc/runs/cmwp8cpcc007hns326bos7x4h/approve-md",
+      "status": 201,
+      "class": "PASS",
+      "ms": 4.5,
+      "note": null,
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/mark-paid",
+      "resolved": "/payroll-psc/runs/cmwp8cpcc007hns326bos7x4h/mark-paid",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/return",
+      "resolved": "/payroll-psc/runs/cmwp8cpcc007hns326bos7x4h/return",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.0,
+      "note": "{\"message\": \"Cannot return from status paid\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/submit",
+      "resolved": "/payroll-psc/runs/cmwp8cpcc007hns326bos7x4h/submit",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": \"Cannot submit from status paid\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payslips/publish/:month",
+      "resolved": "/payslips/publish/2026-11",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/policies/:id/acknowledge",
+      "resolved": "/policies/cmwp8coiw00k8jfaao9o8qkzv/acknowledge",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases/:id/decide",
+      "resolved": "/probation/cases/cmwp8coiy00kdjfaajlxwjlh2/decide",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property decision should not exist\", \"property note should not exist\", \"finalDecision must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases/:id/pips",
+      "resolved": "/probation/cases/cmwp8coiy00kdjfaajlxwjlh2/pips",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"improvementArea must be longer than or equal to 1 characters\", \"improvementArea must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/candidates/:id/convert",
+      "resolved": "/recruitment/candidates/cmwp8coiz00kgjfaar65lvex5/convert",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.6,
+      "note": "{\"message\": \"Candidate offer must be accepted or stage must be offer/hired\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests/:id/cancel",
+      "resolved": "/recruitment/staffing-requests/cmwp8cpcl007mns32adq7woq4/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 3.4,
+      "note": null,
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests/:id/create-job",
+      "resolved": "/recruitment/staffing-requests/cmwp8cpcl007mns32adq7woq4/create-job",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": \"Staffing request must be approved\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/resignations/:id/cancel",
+      "resolved": "/resignations/cmwp8cpco007qns32hssnvtur/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.9,
+      "note": null,
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/roster/periods/:id/publish",
+      "resolved": "/roster/periods/roster-nov-2026/publish",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/surveys/:id/responses",
+      "resolved": "/surveys/cmwp8cpcv007wns32gmx3v9h8/responses",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property title should not exist\", \"property questions should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/corrections/:id/cancel",
+      "resolved": "/time/corrections/cmwp8cpd00081ns32yjqdj7gi/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/shift-swaps/:id/cancel",
+      "resolved": "/time/shift-swaps/swap-demo-1/cancel",
+      "status": 201,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timesheets/:month/lock",
+      "resolved": "/timesheets/2026-11/lock",
+      "status": 201,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timesheets/:month/submit",
+      "resolved": "/timesheets/2026-11/submit",
+      "status": 201,
+      "class": "PASS",
+      "ms": 1.9,
+      "note": null,
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/notifications/settings",
+      "resolved": "/notifications/settings",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property userId should not exist\", \"property title should not exist\", \"property titleKm should not exist\", \"property message should not exist\", \"property messageKm should not exist\", \"property type should not exist\"], \"error\":",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/payslips",
+      "resolved": "/payslips",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"employeeId must be a string\", \"month must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/roster/shift-codes",
+      "resolved": "/roster/shift-codes",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.3,
+      "note": "{\"message\": [\"id must be a string\", \"label must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/settings/approval-chains",
+      "resolved": "/settings/approval-chains",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/onboarding/templates/:id",
+      "resolved": "/onboarding/templates/cmwp8coj000khjfaatn91bu8y",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"name must be longer than or equal to 1 characters\", \"name must be a string\", \"taskDefs must be an array\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/payroll-psc/runs/:id/lines",
+      "resolved": "/payroll-psc/runs/cmwp8cpcc007hns326bos7x4h/lines",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property periodYm should not exist\", \"lines must be an array\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/probation/cases/:id/evaluations",
+      "resolved": "/probation/cases/cmwp8coiy00kdjfaajlxwjlh2/evaluations",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"month must not be greater than 3\", \"month must not be less than 1\", \"month must be an integer number\", \"type must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/rbac/roles/:role/permissions",
+      "resolved": "/rbac/roles/employee/permissions",
+      "status": null,
+      "class": "SKIP_DESTRUCTIVE",
+      "ms": 0,
+      "note": "skipped RBAC wipe during QA"
+    },
+    {
+      "method": "PUT",
+      "path": "/roster/periods/:id/cells",
+      "resolved": "/roster/periods/roster-nov-2026/cells",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"cells must be an array\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/setup",
+      "resolved": "/ap/setup",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.9,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/settings",
+      "resolved": "/er/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/setup",
+      "resolved": "/finance/setup",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/settings",
+      "resolved": "/payroll-config/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/settings",
+      "resolved": "/probation/settings",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.5,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/platform",
+      "resolved": "/settings/platform",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/welcome-template",
+      "resolved": "/settings/welcome-template",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"property title should not exist\", \"property titleKm should not exist\", \"property intro should not exist\", \"property introKm should not exist\", \"property whatToBring should not exist\", \"property whatToBringKm should not exist\",",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/announcements/:id",
+      "resolved": "/announcements/cmwp8cpa1005rns32ctcfvk24",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/catalogue/:id",
+      "resolved": "/ap/catalogue/ap-cat-rice",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/daily-ingredients/:id",
+      "resolved": "/ap/daily-ingredients/cmwp8cp2r005gns32uomzqi80",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/benefits/enrollments/:id/cancel",
+      "resolved": "/benefits/enrollments/enr-benefit-seed/cancel",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/compliance/items/:id",
+      "resolved": "/compliance/items/cmwp8cpa9005uns32nzy6t1fm",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/contracts/:id",
+      "resolved": "/contracts/cmwp8cpg9008ens32vvef0k7j",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/employees/:id",
+      "resolved": "/employees/cmwp8cpab005vns32vk4vm3iu",
+      "status": 200,
+      "class": "PASS",
+      "ms": 5.0,
+      "note": null,
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/:id",
+      "resolved": "/er/cmwp8cpag005yns32e7s67scy",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.8,
+      "note": "{\"message\": [\"property type should not exist\", \"property subject should not exist\", \"property description should not exist\", \"property employeeId should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/investigations/:id",
+      "resolved": "/er/investigations/cmwp8cpai005zns32y7nawfb6",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"property type should not exist\", \"property subject should not exist\", \"property description should not exist\", \"property employeeId should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/accounts/:id",
+      "resolved": "/finance/accounts/cmwp8cpao0064ns32tdqdom9i",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property code should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/close-checklist/:id",
+      "resolved": "/finance/close-checklist/fin-close-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/customers/:id",
+      "resolved": "/finance/customers/fin-cust-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/tax/:id",
+      "resolved": "/finance/tax/fin-tax-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/helpdesk/tickets/:id",
+      "resolved": "/helpdesk/tickets/cmwp8cpb6006ans32oqq2s6aq",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.6,
+      "note": "{\"message\": [\"property subject should not exist\", \"property message should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/leave/types/:id",
+      "resolved": "/leave/types/lt-qa-leave-328878",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/letters/:id",
+      "resolved": "/letters/cmwp8cpbk006mns32cvh2lvgr",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property employeeId should not exist\", \"property kind should not exist\", \"property language should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/notifications/:id/read",
+      "resolved": "/notifications/cmwp8cpbn006pns3237gok2jy/read",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/offboarding/tasks/:id",
+      "resolved": "/offboarding/tasks/off-task-seed",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"done must be a boolean value\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/onboarding/cases/:id",
+      "resolved": "/onboarding/cases/cmwp8cpbr006sns327m0iwi0f",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property employeeId should not exist\", \"property templateId should not exist\", \"property joiningDate should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/onboarding/tasks/:id",
+      "resolved": "/onboarding/tasks/onb-task-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.8,
+      "note": null,
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/branches/:id",
+      "resolved": "/org/branches/cmwp8cpbv0070ns3287c5lpym",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.4,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/companies/:id",
+      "resolved": "/org/companies/cmwp8cpbw0071ns32m5ixzh4w",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/departments/:id",
+      "resolved": "/org/departments/cmwp8cpbx0072ns32khgbr3l4",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/positions/:id",
+      "resolved": "/org/positions/cmwp8cpby0074ns32vsx0kd6l",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "resolved": "/payroll-config/contract-advantage-templates/cmwp8cpc30079ns32kphfaomp",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/contribution-registers/:id",
+      "resolved": "/payroll-config/contribution-registers/cmwp8cpc5007ans32cdvqdbbi",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/incentives/:id",
+      "resolved": "/payroll-config/incentives/cmwp8cpc6007cns32nj0h4jy7",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.9,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/rules/:id",
+      "resolved": "/payroll-config/rules/cmwp8cpc8007dns32hxib1dsu",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/salary-increases/:id",
+      "resolved": "/payroll-config/salary-increases/cmwp8cpca007fns32asapo2dq",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.3,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/structures/:id",
+      "resolved": "/payroll-config/structures/cmwp8cpcb007gns32uzfg46x1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/cycles/:id",
+      "resolved": "/performance/cycles/perf-cycle-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/goals/:id",
+      "resolved": "/performance/goals/perf-goal-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/reviews/:id",
+      "resolved": "/performance/reviews/perf-review-seed",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/policies/:id",
+      "resolved": "/policies/cmwp8cphy008rns32bqxsx39c",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property body should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/cases/:id",
+      "resolved": "/probation/cases/cmwp8coiy00kdjfaajlxwjlh2",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/pips/:id",
+      "resolved": "/probation/pips/pip-seed-1",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"improvementArea must be longer than or equal to 1 characters\", \"improvementArea must be a string\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recognition/:id/hide",
+      "resolved": "/recognition/cmwp8cpch007jns32vzvckhsq/hide",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/candidates/:id",
+      "resolved": "/recruitment/candidates/cmwp8coiz00kgjfaar65lvex5",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property jobId should not exist\", \"property firstName should not exist\", \"property lastName should not exist\", \"property email should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/interviews/:id",
+      "resolved": "/recruitment/interviews/iv-seed-1",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.3,
+      "note": "{\"message\": [\"property candidateId should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/jobs/:id",
+      "resolved": "/recruitment/jobs/cmwp8coiz00kejfaag6erlp5b",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property headcount should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/staffing-requests/:id",
+      "resolved": "/recruitment/staffing-requests/cmwp8cpcl007mns32adq7woq4",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 1.0,
+      "note": "{\"message\": \"Only pending staffing requests can be edited\", \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/letter-templates/:id",
+      "resolved": "/settings/letter-templates/cmwp8cpcr007sns32rvr2y89f",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/office-locations/:id",
+      "resolved": "/settings/office-locations/cmwp8cpcs007tns32kazjk9yd",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/suggestions/:id",
+      "resolved": "/suggestions/cmwp8cpct007vns322jx92kjt",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property body should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/surveys/:id",
+      "resolved": "/surveys/cmwp8cpcv007wns32gmx3v9h8",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.6,
+      "note": null,
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/training/courses/:id",
+      "resolved": "/training/courses/cmwp8coj100kkjfaarnot6aw9",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/training/enrollments/:id",
+      "resolved": "/training/enrollments/enr-course-seed",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.4,
+      "note": "{\"message\": [\"property employeeId should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/:id",
+      "resolved": "/users/cmwp8cpeh0083ns32lemacnst",
+      "status": 400,
+      "class": "SOFT_400",
+      "ms": 0.5,
+      "note": "{\"message\": [\"property email should not exist\"], \"error\": \"Bad Request\", \"statusCode\": 400}",
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/compliance/items/:id",
+      "resolved": "/compliance/items/cmwp8cpa9005uns32nzy6t1fm",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/employees/:id",
+      "resolved": "/employees/cmwp8cpab005vns32vk4vm3iu",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.7,
+      "note": null,
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/er/investigations/:id",
+      "resolved": "/er/investigations/cmwp8cpai005zns32y7nawfb6",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.5,
+      "note": null,
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/files/:id",
+      "resolved": "/files/file-seed-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/holidays/:id",
+      "resolved": "/holidays/cmwp8cpb8006cns32q83aiqg9",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/leave-blackouts/:id",
+      "resolved": "/leave-blackouts/cmwp8cpba006dns329wiyxk39",
+      "status": 200,
+      "class": "PASS",
+      "ms": 0.9,
+      "note": null,
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/leave/types/:id",
+      "resolved": null,
+      "status": null,
+      "class": "SKIP_DESTRUCTIVE",
+      "ms": 0,
+      "note": "skipped to protect seed data"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/branches/:id",
+      "resolved": "/org/branches/cmwp8cpbv0070ns3287c5lpym",
+      "status": 200,
+      "class": "PASS",
+      "ms": 2.0,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/companies/:id",
+      "resolved": null,
+      "status": null,
+      "class": "SKIP_DESTRUCTIVE",
+      "ms": 0,
+      "note": "skipped to protect seed data"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/departments/:id",
+      "resolved": null,
+      "status": null,
+      "class": "SKIP_DESTRUCTIVE",
+      "ms": 0,
+      "note": "skipped to protect seed data"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/positions/:id",
+      "resolved": "/org/positions/cmwp8cpby0074ns32vsx0kd6l",
+      "status": 409,
+      "class": "CONFLICT",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "resolved": "/payroll-config/contract-advantage-templates/cmwp8cpc30079ns32kphfaomp",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.2,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/contribution-registers/:id",
+      "resolved": "/payroll-config/contribution-registers/cmwp8cpc5007ans32cdvqdbbi",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/incentives/:id",
+      "resolved": "/payroll-config/incentives/cmwp8cpc6007cns32nj0h4jy7",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/rules/:id",
+      "resolved": "/payroll-config/rules/cmwp8cpc8007dns32hxib1dsu",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/salary-increases/:id",
+      "resolved": "/payroll-config/salary-increases/cmwp8cpca007fns32asapo2dq",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.4,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/structures/:id",
+      "resolved": "/payroll-config/structures/cmwp8cpcb007gns32uzfg46x1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.7,
+      "note": null,
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/probation/pips/:id",
+      "resolved": "/probation/pips/pip-seed-1",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.0,
+      "note": null,
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/settings/letter-templates/:id",
+      "resolved": "/settings/letter-templates/cmwp8cpcr007sns32rvr2y89f",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.1,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/settings/office-locations/:id",
+      "resolved": "/settings/office-locations/cmwp8cpcs007tns32kazjk9yd",
+      "status": 200,
+      "class": "PASS",
+      "ms": 1.3,
+      "note": null,
+      "file": "modules/settings/settings.controller.ts"
+    }
+  ]
+}

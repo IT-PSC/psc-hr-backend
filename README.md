@@ -19,7 +19,7 @@ NestJS 11 + Prisma + PostgreSQL API for the [hr-system](../hr-system) SPA (PSC H
 docker compose up -d postgres redis
 
 cp .env.example .env
-# DATABASE_URL host port is 5433 (compose mapping). Set REDIS_ENABLED=false to boot without Redis.
+# DATABASE_URL host port is 5434 (compose mapping). Set REDIS_ENABLED=false to boot without Redis.
 
 npm install
 npx prisma migrate deploy

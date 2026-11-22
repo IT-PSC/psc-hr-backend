@@ -41,6 +41,10 @@ Thumbs.db
 prisma/*.db
 prisma/*.db-journal
 
+# Local file uploads (P5 FILE_STORAGE_DIR)
+uploads/
+!uploads/.gitkeep
+
 # Misc
 *.pem
 .turbo/

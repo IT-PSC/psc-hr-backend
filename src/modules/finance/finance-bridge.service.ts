@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { PrismaService } from '../../common/prisma/prisma.service';
 import { IntegrationEventsService } from '../../common/events/integration-events.service';
+import { PrismaService } from '../../common/prisma/prisma.service';
 
 @Injectable()
 export class FinanceBridgeService {
@@ -13,7 +13,12 @@ export class FinanceBridgeService {
 
   async handlePayrollApproved(
     eventId: string,
-    data: { payrollRunId: string; amount: number; currency: string },
+    data: {
+      payrollRunId: string;
+      amount: number;
+      currency: string;
+      periodYm?: string;
+    },
   ) {
     try {
       await this.prisma.finPayrollPosting.upsert({
@@ -23,6 +28,7 @@ export class FinanceBridgeService {
           payrollRunId: data.payrollRunId,
           amount: data.amount,
           currency: data.currency,
+          periodYm: data.periodYm,
           status: 'draft',
         },
         update: {},

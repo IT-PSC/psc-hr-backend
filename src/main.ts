@@ -1,8 +1,21 @@
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { buildSwaggerConfig } from './common/swagger/document';
+import {
+  filterDocumentForRole,
+  SWAGGER_ROLES,
+} from './common/swagger/role-docs';
+
+const SWAGGER_UI_OPTIONS = {
+  persistAuthorization: true,
+  operationsSorter: 'alpha' as const,
+  docExpansion: 'list' as const,
+  filter: true,
+  displayRequestDuration: true,
+};
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,29 +39,21 @@ async function bootstrap() {
   const swaggerEnabled =
     (config.get<string>('SWAGGER_ENABLED') ?? 'true').toLowerCase() === 'true';
   if (swaggerEnabled) {
-    const swagger = new DocumentBuilder()
-      .setTitle('PSC HR Backend')
-      .setDescription(
-        'REST API for PSC HR + Finance. Roles match the hr-system SPA. Use Authorize with a JWT from POST /api/auth/login.',
-      )
-      .setVersion('0.1.0')
-      .addBearerAuth()
-      .addTag('Auth')
-      .addTag('Employees')
-      .addTag('Org')
-      .addTag('Time')
-      .addTag('Approvals')
-      .addTag('PayrollPSC')
-      .addTag('AP')
-      .addTag('Finance')
-      .addTag('Files')
-      .addTag('Audit')
-      .addTag('Workers')
-      .build();
+    const swagger = buildSwaggerConfig();
     const document = SwaggerModule.createDocument(app, swagger);
+
     SwaggerModule.setup('api/docs', app, document, {
       jsonDocumentUrl: 'api/docs-json',
+      swaggerOptions: SWAGGER_UI_OPTIONS,
     });
+
+    for (const role of SWAGGER_ROLES) {
+      const roleDoc = filterDocumentForRole(document, role);
+      SwaggerModule.setup(`api/docs/${role}`, app, roleDoc, {
+        jsonDocumentUrl: `api/docs/${role}-json`,
+        swaggerOptions: SWAGGER_UI_OPTIONS,
+      });
+    }
   }
 
   const port = Number(config.get('PORT') ?? 3001);
@@ -56,6 +61,9 @@ async function bootstrap() {
   console.log(`PSC HR Backend listening on http://localhost:${port}/api`);
   if (swaggerEnabled) {
     console.log(`Swagger docs: http://localhost:${port}/api/docs`);
+    for (const role of SWAGGER_ROLES) {
+      console.log(`  role ${role}: http://localhost:${port}/api/docs/${role}`);
+    }
   }
 }
 bootstrap();

@@ -1,0 +1,2291 @@
+{
+  "count": 381,
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "handler": "health",
+      "file": "app.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/platform",
+      "handler": "getPlatform",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/platform",
+      "handler": "patchPlatform",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/office-locations",
+      "handler": "listOffices",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/office-locations/:id",
+      "handler": "getOffice",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/office-locations",
+      "handler": "createOffice",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/office-locations/:id",
+      "handler": "updateOffice",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/settings/office-locations/:id",
+      "handler": "deleteOffice",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/approval-chains",
+      "handler": "listChains",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/settings/approval-chains",
+      "handler": "upsertChain",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/letter-templates",
+      "handler": "listLetters",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/letter-templates/:id",
+      "handler": "getLetter",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/letter-templates",
+      "handler": "createLetter",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/letter-templates/:id",
+      "handler": "updateLetter",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/settings/letter-templates/:id",
+      "handler": "deleteLetter",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/welcome-template",
+      "handler": "getWelcome",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/settings/welcome-template",
+      "handler": "patchWelcome",
+      "file": "modules/settings/settings.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/settings",
+      "handler": "getSettings",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/settings",
+      "handler": "patchSettings",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/cases",
+      "handler": "list",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/probation/cases/:id",
+      "handler": "getOne",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases",
+      "handler": "create",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/cases/:id",
+      "handler": "update",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases/:id/decide",
+      "handler": "decide",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/probation/cases/:id/evaluations",
+      "handler": "upsertEval",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/probation/cases/:id/pips",
+      "handler": "createPip",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/probation/pips/:id",
+      "handler": "updatePip",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/probation/pips/:id",
+      "handler": "deletePip",
+      "file": "modules/probation/probation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/roles",
+      "handler": "listRoles",
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/permissions/:role",
+      "handler": "role",
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/rbac/roles/:role/permissions",
+      "handler": "replacePermissions",
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rbac/matrix",
+      "handler": "matrix",
+      "file": "modules/rbac/rbac.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/rules",
+      "handler": "listRules",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/rules",
+      "handler": "createRule",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/rules/:id",
+      "handler": "getRule",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/rules/:id",
+      "handler": "updateRule",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/rules/:id",
+      "handler": "deleteRule",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/structures",
+      "handler": "listStructures",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/structures",
+      "handler": "createStructure",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/structures/:id",
+      "handler": "getStructure",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/structures/:id",
+      "handler": "updateStructure",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/structures/:id",
+      "handler": "deleteStructure",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/settings",
+      "handler": "getSettings",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/settings",
+      "handler": "patchSettings",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contribution-registers",
+      "handler": "listContributionRegisters",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/contribution-registers",
+      "handler": "createContributionRegister",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contribution-registers/:id",
+      "handler": "getContributionRegister",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/contribution-registers/:id",
+      "handler": "updateContributionRegister",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/contribution-registers/:id",
+      "handler": "deleteContributionRegister",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contract-advantage-templates",
+      "handler": "listAdvantageTemplates",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/contract-advantage-templates",
+      "handler": "createAdvantageTemplate",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "handler": "getAdvantageTemplate",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "handler": "updateAdvantageTemplate",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/contract-advantage-templates/:id",
+      "handler": "deleteAdvantageTemplate",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/incentives",
+      "handler": "listIncentives",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/incentives",
+      "handler": "createIncentive",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/incentives/:id",
+      "handler": "getIncentive",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/incentives/:id",
+      "handler": "updateIncentive",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/incentives/:id",
+      "handler": "deleteIncentive",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/salary-increases",
+      "handler": "listSalaryIncreases",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/salary-increases",
+      "handler": "createSalaryIncrease",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-config/salary-increases/:id/apply",
+      "handler": "applySalaryIncrease",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-config/salary-increases/:id",
+      "handler": "getSalaryIncrease",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/payroll-config/salary-increases/:id",
+      "handler": "updateSalaryIncrease",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/payroll-config/salary-increases/:id",
+      "handler": "deleteSalaryIncrease",
+      "file": "modules/payroll-config/payroll-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/calendar",
+      "handler": "events",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/holidays",
+      "handler": "holidays",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/holidays",
+      "handler": "createHoliday",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/holidays/:id",
+      "handler": "deleteHoliday",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave-blackouts",
+      "handler": "blackouts",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave-blackouts",
+      "handler": "createBlackout",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/leave-blackouts/:id",
+      "handler": "deleteBlackout",
+      "file": "modules/calendar/calendar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/shift-codes",
+      "handler": "shiftCodes",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/roster/shift-codes",
+      "handler": "upsertShift",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/periods",
+      "handler": "periods",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roster/periods/:id",
+      "handler": "getPeriod",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/roster/periods",
+      "handler": "create",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/roster/periods/:id/publish",
+      "handler": "publish",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/roster/periods/:id/cells",
+      "handler": "cells",
+      "file": "modules/roster/roster.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "handler": "roles",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/2fa/verify",
+      "handler": "verify2fa",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/refresh",
+      "handler": "refresh",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "handler": "logout",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me",
+      "handler": "me",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/2fa/setup",
+      "handler": "setup2fa",
+      "file": "modules/auth/auth.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/chart",
+      "handler": "chart",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/companies",
+      "handler": "companies",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/companies/:id",
+      "handler": "company",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/companies",
+      "handler": "createCompany",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/companies/:id",
+      "handler": "updateCompany",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/companies/:id",
+      "handler": "deleteCompany",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/branches",
+      "handler": "branches",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/branches/:id",
+      "handler": "branch",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/branches",
+      "handler": "createBranch",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/branches/:id",
+      "handler": "updateBranch",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/branches/:id",
+      "handler": "deleteBranch",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/departments",
+      "handler": "departments",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/departments",
+      "handler": "createDepartment",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/departments/:id",
+      "handler": "updateDepartment",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/departments/:id",
+      "handler": "deleteDepartment",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/org/positions",
+      "handler": "positions",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/org/positions",
+      "handler": "createPosition",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/org/positions/:id",
+      "handler": "updatePosition",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/org/positions/:id",
+      "handler": "deletePosition",
+      "file": "modules/org/org.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/settings",
+      "handler": "getSettings",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/settings",
+      "handler": "patchSettings",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/investigations",
+      "handler": "listInvestigations",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/er/investigations",
+      "handler": "createInvestigation",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/investigations/:id",
+      "handler": "getInvestigation",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/investigations/:id",
+      "handler": "updateInvestigation",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/er/investigations/:id",
+      "handler": "deleteInvestigation",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er",
+      "handler": "list",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/er",
+      "handler": "create",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/er/:id",
+      "handler": "getOne",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/er/:id",
+      "handler": "update",
+      "file": "modules/employee-relations/employee-relations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/expenses/claims",
+      "handler": "list",
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/expenses/claims",
+      "handler": "create",
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/expenses/claims/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/expenses/expenses.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/training/courses",
+      "handler": "listCourses",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/training/courses",
+      "handler": "createCourse",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/training/courses/:id",
+      "handler": "updateCourse",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/training/enrollments",
+      "handler": "listEnrollments",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/training/enrollments",
+      "handler": "enroll",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/training/enrollments/:id",
+      "handler": "updateEnrollment",
+      "file": "modules/training/training.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts/templates",
+      "handler": "templates",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts",
+      "handler": "list",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts/:id",
+      "handler": "getOne",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts",
+      "handler": "create",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/contracts/:id",
+      "handler": "update",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/:id/renew",
+      "handler": "renew",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/:id/archive",
+      "handler": "archive",
+      "file": "modules/contracts/contracts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payslips",
+      "handler": "list",
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payslips/:id",
+      "handler": "getOne",
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/payslips",
+      "handler": "upsert",
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payslips/publish/:month",
+      "handler": "publish",
+      "file": "modules/payslips/payslips.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/data-quality/scan",
+      "handler": "scan",
+      "file": "modules/data-quality/data-quality.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/jobs",
+      "handler": "jobs",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/jobs",
+      "handler": "createJob",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/jobs/:id",
+      "handler": "updateJob",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/candidates",
+      "handler": "candidates",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/candidates",
+      "handler": "createCandidate",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/candidates/:id/convert",
+      "handler": "accepted",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/candidates/:id",
+      "handler": "updateCandidate",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/interviews",
+      "handler": "interviews",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/interviews",
+      "handler": "createInterview",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/interviews/:id",
+      "handler": "updateInterview",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment/staffing-requests",
+      "handler": "staffing",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests",
+      "handler": "createStaffing",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recruitment/staffing-requests/:id",
+      "handler": "updateStaffing",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests/:id/cancel",
+      "handler": "cancelStaffing",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recruitment/staffing-requests/:id/create-job",
+      "handler": "createJobFromStaffing",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recruitment",
+      "handler": "list",
+      "file": "modules/recruitment/recruitment.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/recognition",
+      "handler": "list",
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/recognition",
+      "handler": "create",
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/recognition/:id/hide",
+      "handler": "hide",
+      "file": "modules/workplace/recognition.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/surveys",
+      "handler": "list",
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/surveys",
+      "handler": "create",
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/surveys/:id",
+      "handler": "update",
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/surveys/:id/responses",
+      "handler": "respond",
+      "file": "modules/workplace/surveys.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/letters",
+      "handler": "list",
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/letters",
+      "handler": "create",
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/letters/:id",
+      "handler": "update",
+      "file": "modules/workplace/letters.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/suggestions",
+      "handler": "list",
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/suggestions",
+      "handler": "create",
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/suggestions/:id",
+      "handler": "update",
+      "file": "modules/workplace/suggestions.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/offboarding/cases",
+      "handler": "list",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/offboarding/cases/:id",
+      "handler": "getOne",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/offboarding/cases",
+      "handler": "start",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/offboarding/tasks/:id",
+      "handler": "updateTask",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/offboarding/cases/:id/exit-interview",
+      "handler": "exitInterview",
+      "file": "modules/lifecycle/offboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/resignations",
+      "handler": "list",
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/resignations",
+      "handler": "create",
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/resignations/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/lifecycle/resignations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/announcements",
+      "handler": "list",
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/announcements",
+      "handler": "create",
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/announcements/:id",
+      "handler": "update",
+      "file": "modules/announcements/announcements.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/catalogue",
+      "handler": "catalogue",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/catalogue",
+      "handler": "createCatalogue",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/catalogue/:id",
+      "handler": "updateCatalogue",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/daily-ingredients",
+      "handler": "ingredients",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/daily-ingredients/:id",
+      "handler": "ingredient",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/daily-ingredients",
+      "handler": "createIngredient",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/daily-ingredients/:id",
+      "handler": "updateIngredient",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/petty-cash",
+      "handler": "pettyCash",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ap/petty-cash",
+      "handler": "createPettyCash",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ap/setup",
+      "handler": "setup",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ap/setup",
+      "handler": "updateSetup",
+      "file": "modules/ap-specialty/ap-specialty.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/compliance/items",
+      "handler": "list",
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/compliance/items",
+      "handler": "create",
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/compliance/items/:id",
+      "handler": "update",
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/compliance/items/:id",
+      "handler": "remove",
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/compliance/live-gaps",
+      "handler": "liveGaps",
+      "file": "modules/compliance/compliance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/policies",
+      "handler": "list",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/policies",
+      "handler": "create",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/policies/:id",
+      "handler": "update",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/policies/:id/acknowledge",
+      "handler": "acknowledge",
+      "file": "modules/policies/policies.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance",
+      "handler": "list",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance/today",
+      "handler": "attendance",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/attendance/:id",
+      "handler": "getOne",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/attendance/check-in",
+      "handler": "checkIn",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/attendance/check-out",
+      "handler": "checkOut",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/reconcile",
+      "handler": "reconcile",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/corrections",
+      "handler": "corrections",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/corrections",
+      "handler": "createCorrection",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/corrections/:id/cancel",
+      "handler": "cancelCorrection",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/time/shift-swaps",
+      "handler": "shiftSwaps",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/shift-swaps",
+      "handler": "createShiftSwap",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/time/shift-swaps/:id/cancel",
+      "handler": "cancelShiftSwap",
+      "file": "modules/time/time.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard/summary",
+      "handler": "summary",
+      "file": "modules/dashboard/dashboard.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations",
+      "handler": "health",
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/telegram/connections",
+      "handler": "connections",
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/telegram/outbox",
+      "handler": "outbox",
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/integrations/telegram/outbox",
+      "handler": "enqueue",
+      "file": "modules/integrations/integrations.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/audit/export",
+      "handler": "export",
+      "file": "modules/audit/audit.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/audit",
+      "handler": "list",
+      "file": "modules/audit/audit.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-psc/runs",
+      "handler": "runs",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll-psc/runs/:id",
+      "handler": "getOne",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs",
+      "handler": "create",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/payroll-psc/runs/:id/lines",
+      "handler": "replaceLines",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/submit",
+      "handler": "submit",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/return",
+      "handler": "returnRun",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/approve-md",
+      "handler": "approveMd",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll-psc/runs/:id/mark-paid",
+      "handler": "markPaid",
+      "file": "modules/payroll-psc/payroll-psc.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts-payable/requests",
+      "handler": "requests",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts-payable/requests/:id",
+      "handler": "getOne",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests",
+      "handler": "create",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/submit",
+      "handler": "submit",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/check",
+      "handler": "check",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/return",
+      "handler": "returnDoc",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/approve",
+      "handler": "proposal",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/accounts-payable/requests/:id/mark-paid",
+      "handler": "markPaid",
+      "file": "modules/accounts-payable/accounts-payable.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/users/me",
+      "handler": "me",
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "handler": "findAll",
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/users",
+      "handler": "create",
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/:id",
+      "handler": "update",
+      "file": "modules/users/users.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/workers/jobs",
+      "handler": "jobs",
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/punch-reminder",
+      "handler": "punch",
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/telegram",
+      "handler": "message",
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/workers/export",
+      "handler": "export",
+      "file": "modules/queue/queue.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files",
+      "handler": "list",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/files/upload",
+      "handler": "FileInterceptor",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:id/download",
+      "handler": "download",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:id",
+      "handler": "getOne",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/files/:id",
+      "handler": "remove",
+      "file": "modules/files/files.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/timesheets",
+      "handler": "summary",
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timesheets/:month/submit",
+      "handler": "submit",
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timesheets/:month/lock",
+      "handler": "lock",
+      "file": "modules/timesheet/timesheet.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/summary",
+      "handler": "summary",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/payroll-postings",
+      "handler": "payrollPostings",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/payroll-postings/:id/post",
+      "handler": "postPayroll",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/payroll-postings/:id/void",
+      "handler": "voidPayroll",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/ap-payment-proposals",
+      "handler": "apProposals",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/ap-payment-proposals/:id/post",
+      "handler": "postAp",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/ap-payment-proposals/:id/mark-paid",
+      "handler": "payAp",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/integration-events",
+      "handler": "events",
+      "file": "modules/finance/finance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/shifts",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts",
+      "handler": "open",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts/:id/close",
+      "handler": "close",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/shifts/:id/review",
+      "handler": "review",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/collection-batches",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/submit",
+      "handler": "submit",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/confirm",
+      "handler": "confirm",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/collection-batches/:id/reject",
+      "handler": "reject",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/bank-lines",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines/:id/match",
+      "handler": "match",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/bank-lines/:id/ignore",
+      "handler": "ignore",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/wallets",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/wallets",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/wallets/:id",
+      "handler": "getOne",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/wallets/:id/movements",
+      "handler": "move",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/inventory",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory/:id/approve",
+      "handler": "approve",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/inventory/:id/reject",
+      "handler": "reject",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/tax",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/tax",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/tax/:id",
+      "handler": "update",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/tax/:id/remit",
+      "handler": "remit",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/setup",
+      "handler": "get",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/setup",
+      "handler": "update",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/close-checklist",
+      "handler": "list",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/close-checklist",
+      "handler": "create",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/close-checklist/:id",
+      "handler": "update",
+      "file": "modules/finance/ops.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/customers",
+      "handler": "list",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/customers",
+      "handler": "create",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/customers/:id",
+      "handler": "update",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/invoices",
+      "handler": "list",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/invoices/:id",
+      "handler": "getOne",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices",
+      "handler": "create",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices/:id/post",
+      "handler": "post",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/invoices/:id/void",
+      "handler": "voidInvoice",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/receipts",
+      "handler": "list",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts",
+      "handler": "create",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts/:id/confirm",
+      "handler": "confirm",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/receipts/:id/reject",
+      "handler": "reject",
+      "file": "modules/finance/ar.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/accounts",
+      "handler": "list",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/accounts",
+      "handler": "create",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/finance/accounts/:id",
+      "handler": "update",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/periods",
+      "handler": "list",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods",
+      "handler": "create",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods/:id/soft-close",
+      "handler": "softClose",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/periods/:id/lock",
+      "handler": "lock",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/journals",
+      "handler": "list",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance/journals/:id",
+      "handler": "getOne",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals",
+      "handler": "create",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals/:id/post",
+      "handler": "post",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/journals/:id/reverse",
+      "handler": "reverse",
+      "file": "modules/finance/ledger.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/cycles",
+      "handler": "listCycles",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/cycles",
+      "handler": "createCycle",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/cycles/:id",
+      "handler": "updateCycle",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/goals",
+      "handler": "listGoals",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/goals",
+      "handler": "createGoal",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/goals/:id",
+      "handler": "updateGoal",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/performance/reviews",
+      "handler": "listReviews",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/performance/reviews",
+      "handler": "createReview",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/performance/reviews/:id",
+      "handler": "updateReview",
+      "file": "modules/performance/performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/approvals",
+      "handler": "list",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "handler": "submit",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/approve",
+      "handler": "approve",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/reject",
+      "handler": "reject",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/:id/return",
+      "handler": "returnForEdit",
+      "file": "modules/approvals/approvals.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/assets",
+      "handler": "list",
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets",
+      "handler": "create",
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/:id/assign",
+      "handler": "assign",
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/:id/return",
+      "handler": "returnAsset",
+      "file": "modules/benefits-assets/assets.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/benefits/plans",
+      "handler": "listPlans",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/benefits/plans",
+      "handler": "createPlan",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/benefits/enrollments",
+      "handler": "listEnrollments",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/benefits/enrollments",
+      "handler": "enroll",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/benefits/enrollments/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/benefits-assets/benefits.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/overtime",
+      "handler": "list",
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/overtime",
+      "handler": "create",
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/overtime/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/overtime/overtime.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/tickets",
+      "handler": "list",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/tickets",
+      "handler": "create",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/tickets/:id",
+      "handler": "getOne",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/helpdesk/tickets/:id",
+      "handler": "update",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/tickets/:id/messages",
+      "handler": "addMessage",
+      "file": "modules/helpdesk/helpdesk.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications",
+      "handler": "list",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/unread-count",
+      "handler": "unreadCount",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/settings",
+      "handler": "getSettings",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/notifications/settings",
+      "handler": "updateSettings",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications/mark-all-read",
+      "handler": "markAllRead",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications",
+      "handler": "create",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/notifications/:id/read",
+      "handler": "markRead",
+      "file": "modules/notifications/notifications.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/templates",
+      "handler": "templates",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/onboarding/templates",
+      "handler": "createTemplate",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/onboarding/templates/:id",
+      "handler": "updateTemplate",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/cases",
+      "handler": "cases",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding/cases/:id",
+      "handler": "getCase",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/onboarding/cases",
+      "handler": "start",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/onboarding/cases/:id",
+      "handler": "updateCase",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/onboarding/tasks/:id",
+      "handler": "updateTask",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/onboarding",
+      "handler": "list",
+      "file": "modules/onboarding/onboarding.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/types",
+      "handler": "types",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/types",
+      "handler": "createType",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/leave/types/:id",
+      "handler": "updateType",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/leave/types/:id",
+      "handler": "balances",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/balances",
+      "handler": "balances",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/requests",
+      "handler": "list",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/requests/:id",
+      "handler": "getOne",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/requests",
+      "handler": "create",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/requests/:id/cancel",
+      "handler": "cancel",
+      "file": "modules/leave/leave.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-summary",
+      "handler": "hrSummary",
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-monthly",
+      "handler": "hrMonthly",
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/hr-trends",
+      "handler": "hrTrends",
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/finance-summary",
+      "handler": "financeSummary",
+      "file": "modules/reports/reports.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/profile-changes",
+      "handler": "listProfile",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/profile-changes",
+      "handler": "createProfile",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/profile-changes/:id/cancel",
+      "handler": "cancelProfile",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/org-changes",
+      "handler": "listOrg",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/org-changes",
+      "handler": "createOrg",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/org-changes/:id/cancel",
+      "handler": "cancelOrg",
+      "file": "modules/employees/employee-changes.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees",
+      "handler": "findAll",
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/:id",
+      "handler": "findOne",
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/employees",
+      "handler": "create",
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/employees/:id",
+      "handler": "update",
+      "file": "modules/employees/employees.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/employees/:id",
+      "handler": "employee",
+      "file": "modules/employees/employees.controller.ts"
+    }
+  ]
+}

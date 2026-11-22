@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { RequirePermission } from '../../common/decorators/roles.decorator';
 import type { JwtPayload } from '../../common/roles/types';
+import { CreateUserDto, UpdateUserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
-@ApiTags('users')
+@ApiTags('Users & Roles')
 @ApiBearerAuth()
 @Controller('users')
 export class UsersController {
@@ -22,5 +23,21 @@ export class UsersController {
   @ApiOperation({ summary: 'List users (admin/hr)' })
   findAll() {
     return this.users.findAll();
+  }
+
+  @Post()
+  @RequirePermission('users', 'create')
+  @ApiOperation({ summary: 'Create user with bcrypt password and roles' })
+  create(@Body() dto: CreateUserDto) {
+    return this.users.create(dto);
+  }
+
+  @Patch(':id')
+  @RequirePermission('users', 'edit')
+  @ApiOperation({
+    summary: 'Update user active flag, roles, password, or employee link',
+  })
+  update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+    return this.users.update(id, dto);
   }
 }

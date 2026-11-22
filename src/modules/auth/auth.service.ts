@@ -19,6 +19,7 @@ const ROLES_REQUIRING_2FA: AppRole[] = [
   'hr',
   'finance_manager',
 ];
+const TRUSTED_DEVICE_DAYS = 30;
 
 export interface AuthUserDto {
   id: string;
@@ -35,6 +36,7 @@ type LoginResult =
       accessToken: string;
       refreshToken: string;
       user: AuthUserDto;
+      deviceToken?: string;
     }
   | {
       requires2FA: true;
@@ -60,23 +62,25 @@ export class AuthService {
       user.twoFactorEnabled ||
       roles.some((r) => ROLES_REQUIRING_2FA.includes(r));
 
-    // Device remember hint skips challenge (client stores opaque token)
-    if (needs2fa && !dto.deviceToken) {
-      const challengeToken = await this.jwt.signAsync(
-        { sub: user.id, purpose: '2fa' },
-        {
-          secret: this.config.getOrThrow<string>('JWT_SECRET'),
-          expiresIn: '10m' as StringValue,
-        },
-      );
-      return {
-        requires2FA: true,
-        challengeToken,
-        demoCodeHint: DEMO_2FA_CODE,
-      };
+    if (needs2fa) {
+      const trusted = await this.isTrustedDevice(user.id, dto.deviceToken);
+      if (!trusted) {
+        const challengeToken = await this.jwt.signAsync(
+          { sub: user.id, purpose: '2fa' },
+          {
+            secret: this.config.getOrThrow<string>('JWT_SECRET'),
+            expiresIn: '10m' as StringValue,
+          },
+        );
+        return {
+          requires2FA: true,
+          challengeToken,
+          demoCodeHint: DEMO_2FA_CODE,
+        };
+      }
     }
 
-    return this.issueTokens(user.id);
+    return this.issueTokens(user.id, false);
   }
 
   async verify2fa(dto: TwoFactorVerifyDto): Promise<LoginResult> {
@@ -104,7 +108,7 @@ export class AuthService {
     });
     if (!row) throw new UnauthorizedException('Invalid refresh token');
     await this.prisma.refreshToken.delete({ where: { id: row.id } });
-    return this.issueTokens(row.userId);
+    return this.issueTokens(row.userId, false);
   }
 
   async logout(refreshToken?: string, userId?: string) {
@@ -140,9 +144,25 @@ export class AuthService {
     };
   }
 
+  private async isTrustedDevice(
+    userId: string,
+    deviceToken?: string,
+  ): Promise<boolean> {
+    if (!deviceToken || !deviceToken.trim()) return false;
+    const tokenHash = this.hashToken(deviceToken.trim());
+    const row = await this.prisma.trustedDevice.findFirst({
+      where: {
+        userId,
+        tokenHash,
+        expiresAt: { gt: new Date() },
+      },
+    });
+    return Boolean(row);
+  }
+
   private async issueTokens(
     userId: string,
-    _rememberDevice = false,
+    rememberDevice = false,
   ): Promise<Extract<LoginResult, { requires2FA: false }>> {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
@@ -170,7 +190,8 @@ export class AuthService {
 
     const accessToken = await this.jwt.signAsync(payload, {
       secret: this.config.getOrThrow<string>('JWT_SECRET'),
-      expiresIn: (this.config.get<string>('JWT_EXPIRES_IN') ?? '8h') as StringValue,
+      expiresIn: (this.config.get<string>('JWT_EXPIRES_IN') ??
+        '8h') as StringValue,
     });
 
     const refreshToken = randomBytes(48).toString('hex');
@@ -183,11 +204,27 @@ export class AuthService {
       },
     });
 
+    let deviceToken: string | undefined;
+    if (rememberDevice) {
+      deviceToken = randomBytes(32).toString('hex');
+      await this.prisma.trustedDevice.create({
+        data: {
+          userId: user.id,
+          tokenHash: this.hashToken(deviceToken),
+          label: 'remembered-browser',
+          expiresAt: new Date(
+            Date.now() + TRUSTED_DEVICE_DAYS * 24 * 60 * 60 * 1000,
+          ),
+        },
+      });
+    }
+
     return {
       requires2FA: false,
       accessToken,
       refreshToken,
       user: this.toUserDto(user),
+      ...(deviceToken ? { deviceToken } : {}),
     };
   }
 

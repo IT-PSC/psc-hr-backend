@@ -1,9 +1,12 @@
 import { BullModule } from '@nestjs/bullmq';
 import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PrismaService } from '../../common/prisma/prisma.service';
 import { ExportsProcessor } from '../../workers/processors/exports.processor';
 import { PunchRemindersProcessor } from '../../workers/processors/punch-reminders.processor';
 import { TelegramProcessor } from '../../workers/processors/telegram.processor';
+import { FilesModule } from '../files/files.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 import {
   QUEUE_EXPORTS,
   QUEUE_PUNCH_REMINDERS,
@@ -15,18 +18,17 @@ import { QueueService } from './queue.service';
 @Module({})
 export class QueueModule {
   static register(): DynamicModule {
-    const enabled = (process.env.REDIS_ENABLED ?? 'true').toLowerCase() !== 'false';
+    const enabled =
+      (process.env.REDIS_ENABLED ?? 'true').toLowerCase() !== 'false';
     if (!enabled) {
       return {
         module: QueueModule,
+        imports: [NotificationsModule, FilesModule],
         providers: [
           {
             provide: QueueService,
-            useValue: {
-              enqueuePunchReminder: async () => ({ id: 'redis-disabled' }),
-              enqueueTelegram: async () => ({ id: 'redis-disabled' }),
-              enqueueExport: async () => ({ id: 'redis-disabled' }),
-            },
+            useFactory: (prisma: PrismaService) => new QueueService(prisma),
+            inject: [PrismaService],
           },
         ],
         controllers: [QueueController],
@@ -37,6 +39,8 @@ export class QueueModule {
     return {
       module: QueueModule,
       imports: [
+        NotificationsModule,
+        FilesModule,
         BullModule.forRootAsync({
           imports: [ConfigModule],
           inject: [ConfigService],

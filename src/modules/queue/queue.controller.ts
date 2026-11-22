@@ -1,19 +1,26 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { RequirePermission } from '../../common/decorators/roles.decorator';
 import type { JwtPayload } from '../../common/roles/types';
 import { QueueService } from './queue.service';
 
-@ApiTags('Workers')
+@ApiTags('Integrations')
 @ApiBearerAuth()
 @Controller('workers')
 export class QueueController {
   constructor(private readonly queues: QueueService) {}
 
+  @Get('jobs')
+  @RequirePermission('settings', 'manage_settings')
+  @ApiOperation({ summary: 'List recent worker job runs' })
+  jobs(@Query('queue') queue?: string) {
+    return this.queues.listJobs(queue);
+  }
+
   @Post('punch-reminder')
   @RequirePermission('attendance', 'manage_settings')
-  @ApiOperation({ summary: 'Enqueue punch reminder (BullMQ stub)' })
+  @ApiOperation({ summary: 'Enqueue punch reminder' })
   punch(
     @Body() body: { employeeId: string; kind: 'check_in' | 'check_out' },
   ) {
@@ -25,8 +32,16 @@ export class QueueController {
   @ApiOperation({
     summary: 'Enqueue Telegram message (token server-side only)',
   })
-  telegram(@Body() body: { message: string; chatId?: string; messageKm?: string }) {
-    return this.queues.enqueueTelegram(body.message, body.chatId, body.messageKm);
+  telegram(
+    @CurrentUser() user: JwtPayload,
+    @Body() body: { message: string; chatId?: string; messageKm?: string },
+  ) {
+    return this.queues.enqueueTelegram(
+      body.message,
+      body.chatId,
+      body.messageKm,
+      user.sub,
+    );
   }
 
   @Post('export')

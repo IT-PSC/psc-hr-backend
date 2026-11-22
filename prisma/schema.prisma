@@ -42,6 +42,8 @@ model User {
   active       Boolean    @default(true)
   twoFactorEnabled Boolean @default(false)
   roles        UserRole[]
+  notifications Notification[]
+  notificationPreference NotificationPreference?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -73,31 +75,134 @@ model Employee {
   status       String    @default("active")
   startDate    DateTime?
   baseSalary   Decimal?  @db.Decimal(12, 2)
+  /// Profile fields aligned with SPA Employee type (optional until filled)
+  gender       String?
+  dateOfBirth  DateTime?
+  nationality  String?
+  idNumber     String?
+  address      String?
+  avatarColor  String?
+  avatarUrl    String?
+  allowances   Decimal?  @db.Decimal(12, 2)
+  deductions   Decimal?  @db.Decimal(12, 2)
+  bankAccount  String?
+  bankName     String?
+  nssfNumber   String?
+  emergencyContact Json?
+  lastWorkingDay DateTime?
   user         User?
+  attendanceDays AttendanceDay[]
+  leaveRequests  LeaveRequest[]
+  leaveBalances  LeaveBalance[]
+  storedFiles  StoredFile[]
+  overtimeRequests OvertimeRequest[]
+  rosterEntries    RosterEntry[]
+  payslips         Payslip[]
+  policyAcks       PolicyAcknowledgement[]
+  contracts        EmploymentContract[]
+  probationCases   ProbationCase[]
+  onboardingCases  OnboardingCase[]
+  resignationRequests ResignationRequest[]
+  offboardingCases    OffboardingCase[]
+  erCases             ErCase[]
+  performanceGoals    PerformanceGoal[]
+  performanceReviews  PerformanceReview[]
+  courseEnrollments   CourseEnrollment[]
+  helpdeskTickets     HelpdeskTicket[]
+  letterRequests      LetterRequest[]
+  kudosSent           KudosItem[]           @relation("KudosFrom")
+  kudosReceived       KudosItem[]           @relation("KudosTo")
+  suggestions         SuggestionItem[]
+  benefitEnrollments  BenefitEnrollment[]
+  assetsAssigned      CompanyAsset[]
+  attendanceCorrections AttendanceCorrection[]
+  shiftSwapsRequested   ShiftSwapRequest[] @relation("ShiftSwapRequester")
+  shiftSwapsReceived    ShiftSwapRequest[] @relation("ShiftSwapCounterpart")
+  profileChangeRequests ProfileChangeRequest[]
+  orgChangeRequests     OrgChangeRequest[]
+  staffingRequests      StaffingRequest[]
+  expenseClaims          ExpenseClaim[]
+  incentiveAwards        IncentiveAward[]
+  salaryIncreaseRequests SalaryIncreaseRequest[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
   @@index([managerId])
   @@index([departmentId])
+  @@index([status])
+}
+
+model OrgCompany {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  name           String
+  registrationNo String?
+  phone          String?
+  email          String?
+  address        String?
+  status         String       @default("active")
+  branches       OrgBranch[]
+  departments    Department[]
+  positions      Position[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model OrgBranch {
+  id                String       @id @default(cuid())
+  companyId         String
+  company           OrgCompany   @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  code              String       @unique
+  name              String
+  address           String?
+  city              String?
+  managerEmployeeId String?
+  status            String       @default("active")
+  departments       Department[]
+  staffingRequests  StaffingRequest[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([companyId])
 }
 
 model Department {
-  id        String     @id @default(cuid())
-  code      String     @unique
-  name      String
-  nameKm    String?
-  employees Employee[]
-  positions Position[]
+  id                String       @id @default(cuid())
+  code              String       @unique
+  name              String
+  nameKm            String?
+  companyId         String?
+  company           OrgCompany?  @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  branchId          String?
+  branch            OrgBranch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  parentId          String?
+  parent            Department?  @relation("DepartmentHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children          Department[] @relation("DepartmentHierarchy")
+  managerEmployeeId String?
+  status            String       @default("active")
+  employees         Employee[]
+  positions         Position[]
+  staffingRequests  StaffingRequest[]
+
+  @@index([companyId])
+  @@index([branchId])
+  @@index([parentId])
 }
 
 model Position {
-  id           String     @id @default(cuid())
-  code         String     @unique
+  id           String      @id @default(cuid())
+  code         String      @unique
   name         String
   nameKm       String?
   departmentId String?
   department   Department? @relation(fields: [departmentId], references: [id])
+  companyId    String?
+  company      OrgCompany? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  status       String      @default("active")
   employees    Employee[]
+  staffingRequests StaffingRequest[]
+
+  @@index([companyId])
 }
 
 model PermissionGrant {
@@ -134,6 +239,20 @@ model RefreshToken {
   createdAt DateTime @default(now())
 
   @@index([userId])
+  @@index([tokenHash])
+}
+
+/// Remembered browser/device for skipping 2FA (hashed token only)
+model TrustedDevice {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  label     String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 /// Idempotent integration events (payroll → finance, AP → finance)
@@ -153,52 +272,1725 @@ model IntegrationEvent {
   @@index([sourceId])
 }
 
-/// In-memory-style stubs persisted for demo wiring
+/// PSC payroll run header (status machine mirrors SPA MD path; full multi-stage UI later)
 model PscPayrollRun {
-  id          String   @id @default(cuid())
-  periodYm    String
-  status      String   @default("draft") // draft | submitted | md_approved | paid
-  currency    String   @default("USD")
-  totalAmount Decimal  @default(0) @db.Decimal(14, 2)
-  approvedAt  DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id               String           @id @default(cuid())
+  periodYm         String
+  /// draft | submitted | awaiting_md_approval | md_approved | paid | returned
+  status           String           @default("draft")
+  settlementStatus String           @default("unpaid") // unpaid | partially_paid | fully_paid | closed
+  currency         String           @default("USD")
+  totalAmount      Decimal          @default(0) @db.Decimal(14, 2)
+  branchCode       String?
+  revision         Int              @default(1)
+  notes            String?
+  submittedAt      DateTime?
+  approvedAt       DateTime?
+  paidAt           DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  lines            PscPayrollLine[]
 
   @@index([status])
   @@index([periodYm])
 }
 
+model PscPayrollLine {
+  id           String        @id @default(cuid())
+  runId        String
+  run          PscPayrollRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  employeeId   String?
+  personLabel  String?
+  taxOnly      Boolean       @default(false)
+  gross        Decimal       @default(0) @db.Decimal(14, 2)
+  employeeTax  Decimal       @default(0) @db.Decimal(14, 2)
+  companyTax   Decimal       @default(0) @db.Decimal(14, 2)
+  netPay       Decimal       @default(0) @db.Decimal(14, 2)
+  snapshot     Json?
+  createdAt    DateTime      @default(now())
+
+  @@index([runId])
+  @@index([employeeId])
+}
+
 model ApDocument {
-  id          String   @id @default(cuid())
-  docNumber   String   @unique
-  supplier    String
-  currency    String   @default("USD")
-  amount      Decimal  @db.Decimal(14, 2)
-  openBalance Decimal  @db.Decimal(14, 2)
-  status      String   @default("draft") // draft | approved | paid
+  id               String    @id @default(cuid())
+  docNumber        String    @unique
+  /// PR | ER | DI-PR
+  docType          String    @default("PR")
+  supplier         String
+  purpose          String?
+  currency         String    @default("USD")
+  amount           Decimal   @db.Decimal(14, 2)
+  openBalance      Decimal   @db.Decimal(14, 2)
+  /// draft | awaiting_checking | awaiting_approval | approved | returned | cancelled | paid
+  status           String    @default("draft")
+  settlementStatus String    @default("unpaid") // unpaid | partially_paid | fully_paid
+  preparerId       String?
+  checkerId        String?
+  approverId       String?
+  checkedAt        DateTime?
+  approvedAt       DateTime?
+  returnReason     String?
+  revision         Int       @default(1)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  lines            ApLine[]
+
+  @@index([status])
+  @@index([docType])
+}
+
+model ApLine {
+  id          String     @id @default(cuid())
+  documentId  String
+  document    ApDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  description String
+  category    String?
+  currency    String     @default("USD")
+  amount      Decimal    @db.Decimal(14, 2)
+  invoiceRef  String?
+  invoiceDate DateTime?  @db.Date
+  createdAt   DateTime   @default(now())
+
+  @@index([documentId])
+}
+
+model FinPayrollPosting {
+  id            String    @id @default(cuid())
+  eventId       String    @unique
+  payrollRunId  String
+  amount        Decimal   @db.Decimal(14, 2)
+  currency      String    @default("USD")
+  /// draft | posted | void
+  status        String    @default("draft")
+  periodYm      String?
+  postedAt      DateTime?
+  postedById    String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([status])
+  @@index([payrollRunId])
+}
+
+model FinApPaymentProposal {
+  id           String    @id @default(cuid())
+  eventId      String    @unique
+  apDocumentId String
+  amount       Decimal   @db.Decimal(14, 2)
+  currency     String    @default("USD")
+  /// draft | posted | paid | void
+  status       String    @default("draft")
+  postedAt     DateTime?
+  postedById   String?
+  paidAt       DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([status])
+  @@index([apDocumentId])
+}
+
+/// Daily attendance punch (Asia/Phnom_Penh calendar day)
+model AttendanceDay {
+  id             String    @id @default(cuid())
+  employeeId     String
+  employee       Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date           String
+  checkIn        DateTime?
+  checkOut       DateTime?
+  hoursWorked    Decimal?  @db.Decimal(6, 2)
+  overtimeHours  Decimal?  @db.Decimal(6, 2)
+  status         String    @default("present")
+  checkInMeta    Json?
+  checkOutMeta   Json?
+  timezone       String    @default("Asia/Phnom_Penh")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([employeeId, date])
+  @@index([date])
+  @@index([employeeId])
+}
+
+model LeaveType {
+  id                 String         @id
+  name               String
+  nameKm             String?
+  daysPerYear        Decimal        @db.Decimal(6, 2)
+  monthlyAccrual     Decimal?       @db.Decimal(6, 2)
+  paid               Boolean        @default(true)
+  carryOver          Boolean        @default(false)
+  maxCarryOver       Decimal?       @db.Decimal(6, 2)
+  requiresHrApproval Boolean        @default(false)
+  rosterCode         String?
+  color              String?
+  requests           LeaveRequest[]
+  balances           LeaveBalance[]
+}
+
+model LeaveBalance {
+  id            String    @id @default(cuid())
+  employeeId    String
+  employee      Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveTypeId   String
+  leaveType     LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+  year          Int
+  used          Decimal   @default(0) @db.Decimal(6, 2)
+  remaining     Decimal   @db.Decimal(6, 2)
+  total         Decimal   @db.Decimal(6, 2)
+  carryForward  Decimal?  @db.Decimal(6, 2)
+
+  @@unique([employeeId, leaveTypeId, year])
+  @@index([employeeId])
+}
+
+model LeaveRequest {
+  id              String    @id @default(cuid())
+  employeeId      String
+  employee        Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveTypeId     String
+  leaveType       LeaveType @relation(fields: [leaveTypeId], references: [id])
+  startDate       DateTime  @db.Date
+  endDate         DateTime  @db.Date
+  halfDay         Boolean   @default(false)
+  halfDayPeriod   String?
+  days            Decimal   @db.Decimal(6, 2)
+  reason          String
+  status          String    @default("pending") // pending | approved | rejected | cancelled
+  approverId      String?
+  submittedAt     DateTime  @default(now())
+  submittedById   String?
+  rejectComment   String?
+  attachmentName  String?
+  approvalId      String?   @unique
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([leaveTypeId])
+}
+
+/// Persisted approval inbox (replaces in-memory ApprovalsService)
+model ApprovalRequest {
+  id           String    @id @default(cuid())
+  type         String
+  status       String    @default("pending") // pending | approved | rejected | returned
+  requesterId  String
+  summary      String?
+  note         String?
+  relatedId    String?
+  relatedType  String?
+  decidedAt    DateTime?
+  decidedById  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([status])
+  @@index([type])
+  @@index([requesterId])
+  @@index([relatedId])
+}
+
+/// In-app notification for a User (SPA NotificationItem)
+model Notification {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title              String
+  titleKm            String   @default("")
+  message            String
+  messageKm          String   @default("")
+  type               String   @default("info") // info | success | warning | leave | payroll | system
+  read               Boolean  @default(false)
+  link               String?
+  approvalRequestId  String?
+  meta               Json?
+  createdAt          DateTime @default(now())
+
+  @@index([userId, read])
+  @@index([userId, createdAt])
+}
+
+/// Per-user reminder / Telegram prefs (SPA NotificationSettings + chat)
+model NotificationPreference {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  settings         Json
+  telegramChatId   String?
+  telegramEnabled  Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+/// Employee / HR document blob metadata (bytes on disk under FILE_STORAGE_DIR)
+model StoredFile {
+  id           String    @id @default(cuid())
+  employeeId   String?
+  employee     Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  originalName String
+  storedName   String
+  mimeType     String
+  sizeBytes    Int
+  storagePath  String
+  docType      String    @default("other") // contract | id_card | cv | certificate | other
+  visibility   String    @default("hr_only") // hr_only | employee_visible
+  uploadedById String
+  expiryDate   DateTime?
+  deletedAt    DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@index([employeeId])
+  @@index([uploadedById])
+  @@index([deletedAt])
+}
+
+/// BullMQ / worker job audit trail
+model JobRun {
+  id          String    @id @default(cuid())
+  queue       String
+  jobName     String
+  bullJobId   String?
+  status      String    @default("queued") // queued | active | completed | failed | skipped
+  payload     Json?
+  result      Json?
+  error       String?
+  requestedBy String?
+  createdAt   DateTime  @default(now())
+  finishedAt  DateTime?
+  telegramOutboxes TelegramOutbox[]
+
+  @@index([queue, status])
+  @@index([requestedBy])
+  @@index([createdAt])
+}
+
+/// Overtime request (SPA OvertimeRequest)
+model OvertimeRequest {
+  id              String    @id @default(cuid())
+  employeeId      String
+  employee        Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date            String
+  hours           Decimal   @db.Decimal(6, 2)
+  reason          String
+  status          String    @default("pending") // pending | approved | rejected | cancelled
+  otType          String?   // normal_working_day | day_off | public_holiday
+  category        String?   // employee | manager | other
+  hoursToPay      Decimal?  @db.Decimal(6, 2)
+  includeInPayroll Boolean  @default(true)
+  startAt         DateTime?
+  endAt           DateTime?
+  approverId      String?
+  approvedAt      DateTime?
+  approvalId      String?   @unique
+  rejectComment   String?
+  submittedAt     DateTime  @default(now())
+  createdById     String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([date])
+}
+
+/// Month lock for timesheet edits
+model TimesheetLock {
+  id       String   @id @default(cuid())
+  month    String   @unique // YYYY-MM
+  lockedBy String
+  lockedAt DateTime @default(now())
+}
+
+/// Timesheet approval record (team/month scope)
+model TimesheetApproval {
+  id          String    @id @default(cuid())
+  month       String
+  scopeKey    String    @default("company")
+  status      String    @default("pending") // pending | approved | rejected
+  requestedBy String?
+  decidedBy   String?
+  decidedAt   DateTime?
+  approvalId  String?   @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([month, scopeKey])
+  @@index([status])
+}
+
+model ShiftCode {
+  id        String   @id // e.g. WD, OFF
+  label     String
+  labelKm   String?
+  timeRange String?
+  color     String?
+  dayValue  Decimal  @default(1) @db.Decimal(4, 2)
+  isOff     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RosterPeriod {
+  id           String        @id @default(cuid())
+  title        String
+  titleKm      String?
+  startDate    String
+  endDate      String
+  departmentId String?
+  status       String        @default("draft") // draft | published
+  entries      RosterEntry[]
+  shiftSwaps   ShiftSwapRequest[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([departmentId])
+  @@index([status])
+}
+
+model RosterEntry {
+  id         String       @id @default(cuid())
+  periodId   String
+  period     RosterPeriod @relation(fields: [periodId], references: [id], onDelete: Cascade)
+  employeeId String
+  employee   Employee     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date       String
+  shiftCode  String
+
+  @@unique([periodId, employeeId, date])
+  @@index([employeeId])
+  @@index([date])
+}
+
+model PublicHoliday {
+  id     String  @id @default(cuid())
+  name   String
+  nameKm String?
+  date   String  @unique
+  rate   Decimal? @db.Decimal(4, 2)
+}
+
+model LeaveBlackout {
+  id            String   @id @default(cuid())
+  name          String
+  nameKm        String?
+  startDate     String
+  endDate       String
+  departmentIds String[] @default([])
+  mode          String   @default("block") // block | warn
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+/// Classic employee payslip (SPA Payslip)
+model Payslip {
+  id              String   @id @default(cuid())
+  employeeId      String
+  employee        Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  month           String
+  baseSalary      Decimal  @default(0) @db.Decimal(14, 2)
+  allowances      Decimal  @default(0) @db.Decimal(14, 2)
+  overtime        Decimal  @default(0) @db.Decimal(14, 2)
+  deductions      Decimal  @default(0) @db.Decimal(14, 2)
+  netPay          Decimal  @default(0) @db.Decimal(14, 2)
+  status          String   @default("draft") // draft | pending_approval | approved | paid | published
+  workedDays      Decimal? @db.Decimal(6, 2)
+  unpaidLeaveDays Decimal? @db.Decimal(6, 2)
+  otHours         Decimal? @db.Decimal(6, 2)
+  tax             Decimal? @db.Decimal(14, 2)
+  nssfEmployee    Decimal? @db.Decimal(14, 2)
+  nssfEmployer    Decimal? @db.Decimal(14, 2)
+  published       Boolean  @default(false)
+  runId           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([employeeId, month])
+  @@index([month])
+  @@index([status])
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  titleKm   String   @default("")
+  body      String
+  bodyKm    String   @default("")
+  author    String?
+  target    String   @default("all")
+  published Boolean  @default(false)
+  pinned    Boolean  @default(false)
+  createdBy String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published])
+  @@index([createdAt])
+}
+
+model PolicyDocument {
+  id         String                 @id @default(cuid())
+  title      String
+  titleKm    String                 @default("")
+  version    String                 @default("1.0")
+  fileName   String?
+  target     String                 @default("all")
+  published  Boolean                @default(false)
+  uploadedBy String
+  uploadedAt DateTime               @default(now())
+  updatedAt  DateTime               @updatedAt
+  acks       PolicyAcknowledgement[]
+
+  @@index([published])
+}
+
+model PolicyAcknowledgement {
+  id             String         @id @default(cuid())
+  policyId       String
+  policy         PolicyDocument @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  employeeId     String
+  employee       Employee       @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  acknowledgedAt DateTime       @default(now())
+
+  @@unique([policyId, employeeId])
+  @@index([employeeId])
+}
+
+/// P7 people ops
+
+model ContractTemplate {
+  id           String               @id @default(cuid())
+  name         String
+  nameKm       String?
+  contractType String               @default("fixed")
+  bodyEn       String               @default("")
+  bodyKm       String               @default("")
+  contracts    EmploymentContract[]
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+}
+
+model EmploymentContract {
+  id                 String            @id @default(cuid())
+  employeeId         String
+  employee           Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  title              String
+  contractType       String?
+  startDate          String
+  endDate            String?
+  status             String            @default("draft") // draft | pending_signature | active | expired | terminated | archived
+  signedAt           DateTime?
+  salary             Decimal?          @db.Decimal(14, 2)
+  probationEndDate   String?
+  templateId         String?
+  template           ContractTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  previousContractId String?
+  notes              String?
+  archivedAt         DateTime?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([startDate])
+}
+
+model ProbationCase {
+  id               String                @id @default(cuid())
+  employeeId       String
+  employee         Employee              @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  startDate        String
+  endDate          String
+  durationMonths   Int                   @default(3)
+  stage            String                @default("month1")
+  status           String                @default("pending_eval")
+  overallScore     Decimal?              @db.Decimal(6, 2)
+  progressPercent  Int                   @default(0)
+  finalDecision    String?
+  decisionRemarks  String?
+  extensionMonths  Int?
+  evaluations      ProbationEvaluation[]
+  pips             ProbationPip[]
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model ProbationEvaluation {
+  id            String        @id @default(cuid())
+  caseId        String
+  case          ProbationCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  employeeId    String
+  month         Int
+  type          String // self | supervisor
+  status        String        @default("draft") // draft | submitted
+  answers       Json?
+  weightedScore Decimal?      @db.Decimal(6, 2)
+  comments      String?
+  submittedAt   DateTime?
+  evaluatorId   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([caseId, month, type])
+  @@index([employeeId])
+}
+
+model ProbationPip {
+  id                   String        @id @default(cuid())
+  caseId               String
+  case                 ProbationCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  employeeId           String
+  improvementArea      String
+  performanceIssue     String?
+  expectedImprovement  String?
+  requiredActions      String?
+  responsiblePersonId  String?
+  startDate            String?
+  targetDate           String?
+  status               String        @default("not_started")
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  @@index([caseId])
+  @@index([employeeId])
+}
+
+model JobPosting {
+  id             String      @id @default(cuid())
+  title          String
+  titleKm        String?
+  departmentId   String?
+  positionId     String?
+  location       String?
+  employmentType String?
+  status         String      @default("draft") // draft | open | on_hold | closed
+  published      Boolean     @default(false)
+  openings       Int         @default(1)
+  filledCount    Int         @default(0)
+  description    String?
+  requirements   String?
+  postedAt       DateTime?
+  closingDate    String?
+  candidates       Candidate[]
+  staffingRequests StaffingRequest[]
+  createdAt        DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([status])
+  @@index([departmentId])
+}
+
+model Candidate {
+  id                   String      @id @default(cuid())
+  jobId                String
+  job                  JobPosting  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  firstName            String
+  lastName             String
+  email                String
+  phone                String?
+  stage                String      @default("applied")
+  rating               Int?
+  appliedAt            DateTime    @default(now())
+  source               String?
+  notes                String?
+  offerStatus          String      @default("none")
+  offerSalary          Decimal?    @db.Decimal(14, 2)
+  offerStartDate       String?
+  rejectReason         String?
+  convertedEmployeeId  String?
+  interviews           Interview[]
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+
+  @@index([jobId])
+  @@index([stage])
+  @@index([email])
+}
+
+model Interview {
+  id            String    @id @default(cuid())
+  candidateId   String
+  candidate     Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  interviewerId String?
+  scheduledAt   DateTime
+  mode          String    @default("onsite") // onsite | online
+  status        String    @default("scheduled")
+  feedback      String?
+  score         Int?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([candidateId])
+  @@index([scheduledAt])
+}
+
+model OnboardingTemplate {
+  id        String           @id @default(cuid())
+  name      String
+  nameKm    String?
+  active    Boolean          @default(true)
+  taskDefs  Json
+  cases     OnboardingCase[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model OnboardingCase {
+  id              String             @id @default(cuid())
+  employeeId      String
+  employee        Employee           @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  templateId      String?
+  template        OnboardingTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  joiningDate     String
+  stage           String             @default("preboarding")
+  status          String             @default("not_started")
+  progressPercent Int                @default(0)
+  managerId       String?
+  departmentId    String?
+  tasks           OnboardingTask[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model OnboardingTask {
+  id          String         @id @default(cuid())
+  caseId      String
+  case        OnboardingCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  title       String
+  category    String         @default("hr")
+  assigneeId  String?
+  dueDate     String?
+  priority    String         @default("medium")
+  status      String         @default("pending")
+  required    Boolean        @default(true)
+  weight      Int            @default(1)
+  completedAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([caseId])
+  @@index([status])
+}
+
+/// P8 lifecycle / talent / workplace
+
+model ResignationRequest {
+  id                    String   @id @default(cuid())
+  employeeId            String
+  employee              Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  lastWorkingDay        String
+  reason                String
+  status                String   @default("pending") // pending | approved | rejected | cancelled
+  offboardingCaseId     String?  @unique
+  approvalId            String?  @unique
+  rejectComment         String?
+  submittedAt           DateTime @default(now())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model OffboardingCase {
+  id             String            @id @default(cuid())
+  employeeId     String
+  employee       Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  startDate      String
+  lastWorkingDay String
+  status         String            @default("in_progress") // not_started | in_progress | completed
+  progressPercent Int              @default(0)
+  tasks          OffboardingTask[]
+  exitInterview  Json?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model OffboardingTask {
+  id          String          @id @default(cuid())
+  caseId      String
+  case        OffboardingCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  label       String
+  ownerRole   String          @default("hr")
+  kind        String?
+  done        Boolean         @default(false)
+  completedAt DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([caseId])
+}
+
+model ErCase {
+  id           String   @id @default(cuid())
+  type         String // complaint | grievance | conflict | disciplinary
+  refNo        String   @unique
+  employeeId   String?
+  employee     Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  subject      String
+  description  String
+  category     String?
+  priority     String   @default("medium")
+  status       String   @default("submitted")
+  assigneeId   String?
+  involvedIds  String[] @default([])
+  resolution   String?
+  dueDate      String?
+  meta         Json?
+  createdBy    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([type])
+  @@index([status])
+  @@index([employeeId])
+}
+
+model PerformanceCycle {
+  id             String             @id @default(cuid())
+  name           String
+  startDate      String
+  endDate        String
+  status         String             @default("draft") // draft | open | closed
+  ratingScale    Int                @default(5)
+  participantIds String[]           @default([])
+  createdBy      String
+  goals          PerformanceGoal[]
+  reviews        PerformanceReview[]
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([status])
+}
+
+model PerformanceGoal {
+  id             String            @id @default(cuid())
+  employeeId     String
+  employee       Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  cycleId        String?
+  cycle          PerformanceCycle? @relation(fields: [cycleId], references: [id], onDelete: SetNull)
+  title          String
+  titleKm        String?
+  progress       Int               @default(0)
+  dueDate        String?
+  status         String            @default("on_track") // on_track | at_risk | done
+  approvalStatus String            @default("draft") // draft | pending | approved | rejected
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([employeeId])
+  @@index([cycleId])
+}
+
+model PerformanceReview {
+  id            String            @id @default(cuid())
+  employeeId    String
+  employee      Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  reviewerId    String?
+  cycleId       String?
+  cycle         PerformanceCycle? @relation(fields: [cycleId], references: [id], onDelete: SetNull)
+  rating        Int?
+  selfRating    Int?
+  selfComment   String?
+  managerComment String?
+  status        String            @default("draft")
+  dueDate       String?
+  acknowledgedAt DateTime?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@index([employeeId])
+  @@index([cycleId])
+  @@index([status])
+}
+
+model Course {
+  id            String             @id @default(cuid())
+  title         String
+  titleKm       String?
+  category      String?
+  durationHours Decimal?           @db.Decimal(6, 2)
+  status        String             @default("draft") // draft | published | archived
+  startDate     String?
+  trainer       String?
+  seats         Int?
+  mandatory     Boolean            @default(false)
+  enrollments   CourseEnrollment[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@index([status])
+}
+
+model CourseEnrollment {
+  id            String    @id @default(cuid())
+  courseId      String
+  course        Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  employeeId    String
+  employee      Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  status        String    @default("enrolled") // pending_approval | enrolled | in_progress | completed | rejected
+  progress      Int       @default(0)
+  mandatory     Boolean   @default(false)
+  dueDate       String?
+  assignedBy    String?
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([courseId, employeeId])
+  @@index([employeeId])
+  @@index([status])
+}
+
+model HelpdeskTicket {
+  id          String            @id @default(cuid())
+  employeeId  String
+  employee    Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  subject     String
+  message     String
+  category    String            @default("other")
+  priority    String            @default("medium")
+  status      String            @default("open")
+  assigneeId  String?
+  slaDueDate  DateTime?
+  resolvedAt  DateTime?
+  messages    HelpdeskMessage[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model HelpdeskMessage {
+  id         String         @id @default(cuid())
+  ticketId   String
+  ticket     HelpdeskTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  authorId   String
+  message    String
+  createdAt  DateTime       @default(now())
+
+  @@index([ticketId])
+}
+
+model LetterRequest {
+  id          String    @id @default(cuid())
+  employeeId  String
+  employee    Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  kind        String
+  purpose     String?
+  language    String    @default("en")
+  copies      Int       @default(1)
+  status      String    @default("pending") // pending | approved | rejected | ready | cancelled
+  approvalId  String?   @unique
+  submittedAt DateTime  @default(now())
   approvedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model KudosItem {
+  id             String   @id @default(cuid())
+  fromEmployeeId String
+  fromEmployee   Employee @relation("KudosFrom", fields: [fromEmployeeId], references: [id], onDelete: Cascade)
+  toEmployeeId   String
+  toEmployee     Employee @relation("KudosTo", fields: [toEmployeeId], references: [id], onDelete: Cascade)
+  message        String
+  category       String   @default("great_work")
+  hidden         Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  @@index([toEmployeeId])
+  @@index([fromEmployeeId])
+}
+
+model PulseSurvey {
+  id         String                @id @default(cuid())
+  title      String
+  questions  Json
+  target     String                @default("all")
+  openDate   String?
+  closeDate  String?
+  active     Boolean               @default(true)
+  responses  PulseSurveyResponse[]
+  createdBy  String
+  createdAt  DateTime              @default(now())
+  updatedAt  DateTime              @updatedAt
+}
+
+model PulseSurveyResponse {
+  id           String      @id @default(cuid())
+  surveyId     String
+  survey       PulseSurvey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  departmentId String?
+  answers      Json
+  submittedAt  DateTime    @default(now())
+
+  @@index([surveyId])
+}
+
+model SuggestionItem {
+  id          String   @id @default(cuid())
+  employeeId  String?
+  employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  anonymous   Boolean  @default(false)
+  body        String
+  status      String   @default("new") // new | reviewing | done | not_possible
+  publicReply String?
+  showOnBoard Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([status])
 }
 
-model FinPayrollPosting {
-  id            String   @id @default(cuid())
-  eventId       String   @unique
-  payrollRunId  String
-  amount        Decimal  @db.Decimal(14, 2)
-  currency      String   @default("USD")
-  status        String   @default("draft")
-  createdAt     DateTime @default(now())
+model BenefitPlan {
+  id            String              @id @default(cuid())
+  name          String
+  nameKm        String?
+  type          String              @default("other") // health | insurance | allowance | other
+  provider      String?
+  enrollments   BenefitEnrollment[]
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
 }
 
-model FinApPaymentProposal {
+model BenefitEnrollment {
+  id         String      @id @default(cuid())
+  planId     String
+  plan       BenefitPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  employeeId String
+  employee   Employee    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  status     String      @default("enrolled") // pending | enrolled | cancelled
+  enrolledAt DateTime    @default(now())
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@unique([planId, employeeId])
+  @@index([employeeId])
+}
+
+model CompanyAsset {
+  id              String    @id @default(cuid())
+  name            String
+  tag             String    @unique
+  category        String    @default("other")
+  status          String    @default("available") // available | assigned | maintenance | retired
+  assignedToId    String?
+  assignedTo      Employee? @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
+  purchaseDate    String?
+  assignedAt      DateTime?
+  returnedAt      DateTime?
+  assignCondition String?
+  returnCondition String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([status])
+  @@index([assignedToId])
+}
+
+/// P9 finance specialty + compliance
+
+model FinAccount {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  type      String // asset | liability | equity | revenue | expense | cash | bank
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([type])
+}
+
+model FinPeriod {
+  id        String   @id @default(cuid())
+  yearMonth String   @unique
+  status    String   @default("open") // open | soft_close | locked
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FinJournal {
+  id               String           @id @default(cuid())
+  businessDate     String
+  status           String           @default("draft") // draft | posted | reversed
+  sourceSystem     String?
+  sourceDocumentId String?
+  memo             String?
+  reversalOf       String?
+  postedAt         DateTime?
+  postedById       String?
+  lines            FinJournalLine[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([businessDate])
+  @@index([status])
+}
+
+model FinJournalLine {
+  id        String     @id @default(cuid())
+  journalId String
+  journal   FinJournal @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  accountId String
+  debit     Decimal    @default(0) @db.Decimal(14, 2)
+  credit    Decimal    @default(0) @db.Decimal(14, 2)
+  memo      String?
+  branchId  String?
+
+  @@index([journalId])
+  @@index([accountId])
+}
+
+model FinCustomer {
+  id              String       @id @default(cuid())
+  name            String
+  creditLimit     Decimal?     @db.Decimal(14, 2)
+  creditTermsDays Int          @default(30)
+  active          Boolean      @default(true)
+  invoices        FinInvoice[]
+  wallets         FinWallet[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+model FinInvoice {
+  id         String       @id @default(cuid())
+  invoiceNo  String       @unique
+  customerId String
+  customer   FinCustomer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  branchId   String?
+  businessDate String
+  status     String       @default("draft") // draft | posted | partial | paid | void
+  net        Decimal      @default(0) @db.Decimal(14, 2)
+  outputVat  Decimal      @default(0) @db.Decimal(14, 2)
+  gross      Decimal      @default(0) @db.Decimal(14, 2)
+  receipts   FinReceipt[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@index([customerId])
+  @@index([status])
+  @@index([businessDate])
+}
+
+model FinReceipt {
+  id                 String     @id @default(cuid())
+  invoiceId          String
+  invoice            FinInvoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  method             String     @default("cash")
+  amount             Decimal    @db.Decimal(14, 2)
+  confirmationStatus String     @default("pending") // pending | confirmed | rejected
+  confirmedAmount    Decimal?   @db.Decimal(14, 2)
+  batchId            String?
+  shiftId            String?
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+
+  @@index([invoiceId])
+  @@index([batchId])
+}
+
+model FinShift {
+  id           String    @id @default(cuid())
+  branchId     String?
+  terminal     String?
+  cashierId    String?
+  businessDate String
+  status       String    @default("open") // open | closed | reviewed
+  openingFloat Decimal   @default(0) @db.Decimal(14, 2)
+  expectedCash Decimal?  @db.Decimal(14, 2)
+  countedCash  Decimal?  @db.Decimal(14, 2)
+  variance     Decimal?  @db.Decimal(14, 2)
+  reviewerId   String?
+  closedAt     DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([businessDate])
+  @@index([status])
+}
+
+model FinCollectionBatch {
+  id                String   @id @default(cuid())
+  branchId          String?
+  sourceAccount     String?
+  destinationAccount String?
+  status            String   @default("draft") // draft | submitted | confirmed | rejected
+  receiptIds        String[] @default([])
+  receivedAmount    Decimal  @default(0) @db.Decimal(14, 2)
+  confirmedAmount   Decimal? @db.Decimal(14, 2)
+  feeAmount         Decimal? @db.Decimal(14, 2)
+  confirmerId       String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([status])
+}
+
+model FinBankStatementLine {
+  id              String   @id @default(cuid())
+  statementDate   String
+  description     String
+  amount          Decimal  @db.Decimal(14, 2)
+  matchStatus     String   @default("unmatched") // unmatched | matched | ignored
+  matchedBatchId  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([statementDate])
+  @@index([matchStatus])
+}
+
+model FinWallet {
+  id               String              @id @default(cuid())
+  customerId       String
+  customer         FinCustomer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  purchasedBalance Decimal             @default(0) @db.Decimal(14, 2)
+  bonusBalance     Decimal             @default(0) @db.Decimal(14, 2)
+  reserved         Decimal             @default(0) @db.Decimal(14, 2)
+  movements        FinWalletMovement[]
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@index([customerId])
+}
+
+model FinWalletMovement {
+  id        String    @id @default(cuid())
+  walletId  String
+  wallet    FinWallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  type      String // load | redeem | bonus | reserve | release
+  amount    Decimal   @db.Decimal(14, 2)
+  branchId  String?
+  at        DateTime  @default(now())
+
+  @@index([walletId])
+}
+
+model FinInventoryMovement {
+  id             String   @id @default(cuid())
+  itemCode       String
+  itemName       String
+  location       String?
+  type           String // receipt | issue | adjustment
+  quantity       Decimal  @db.Decimal(14, 3)
+  unitCost       Decimal  @default(0) @db.Decimal(14, 2)
+  amount         Decimal  @default(0) @db.Decimal(14, 2)
+  approvalStatus String   @default("pending") // pending | approved | rejected
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([itemCode])
+  @@index([approvalStatus])
+}
+
+model FinTaxScheduleLine {
+  id          String   @id @default(cuid())
+  kind        String // vat_output | vat_input | salary_tax | other
+  period      String
+  base        Decimal  @default(0) @db.Decimal(14, 2)
+  amount      Decimal  @default(0) @db.Decimal(14, 2)
+  outstanding Decimal  @default(0) @db.Decimal(14, 2)
+  ref         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([period])
+  @@index([kind])
+}
+
+model FinSetupConfig {
+  id                 String   @id @default("default")
+  entityName         String   @default("PSC")
+  defaultBranchId    String?
+  arAccountantId     String?
+  financeManagerId   String?
+  vatRatePct         Decimal  @default(10) @db.Decimal(5, 2)
+  salaryTaxEnabled   Boolean  @default(true)
+  reportMode         String   @default("provisional") // provisional | final
+  updatedAt          DateTime @updatedAt
+}
+
+model FinCloseChecklist {
+  id        String   @id @default(cuid())
+  period    String
+  itemKey   String
+  label     String
+  owner     String?
+  done      Boolean  @default(false)
+  due       String?
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([period, itemKey])
+  @@index([period])
+}
+
+model ApCatalogueItem {
   id           String   @id @default(cuid())
-  eventId      String   @unique
-  apDocumentId String
-  amount       Decimal  @db.Decimal(14, 2)
-  currency     String   @default("USD")
-  status       String   @default("draft")
+  code         String   @unique
+  nameKm       String
+  nameEn       String?
+  category     String?
+  purchaseUnit String   @default("kg")
+  active       Boolean  @default(true)
   createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ApDailyIngredient {
+  id               String   @id @default(cuid())
+  branchId         String?
+  branchCode       String?
+  purchaseDate     String
+  marketBuyerId    String?
+  lines            Json
+  evidenceNote     String?
+  linkedDocumentId String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([purchaseDate])
+  @@index([branchId])
+}
+
+model ApPettyCash {
+  id          String   @id @default(cuid())
+  reference   String   @unique
+  branchId    String?
+  paidAt      String
+  currency    String   @default("USD")
+  amount      Decimal  @db.Decimal(14, 2)
+  fundId      String?
+  receiptRef  String?
+  description String?
+  recordedById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([paidAt])
+  @@index([branchId])
+}
+
+model ApSetupConfig {
+  id                 String  @id @default("default")
+  checkerEmployeeId  String?
+  approverEmployeeId String?
+  defaultBranchId    String?
+  defaultBranchCode  String?
+  updatedAt          DateTime @updatedAt
+}
+
+model ComplianceItem {
+  id        String   @id @default(cuid())
+  title     String
+  titleKm   String?
+  category  String // tax | labor | policy | export
+  dueDate   String?
+  status    String   @default("upcoming") // upcoming | due | completed | overdue
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([category])
+}
+
+/// Singleton platform configuration (id = default)
+model PlatformSettings {
+  id                           String   @id @default("default")
+  companyName                  String
+  companyNameKm                String?
+  workStart                    String?
+  workEnd                      String?
+  timezone                     String   @default("Asia/Phnom_Penh")
+  checkInAllowButton           Boolean  @default(true)
+  checkInAllowQr               Boolean  @default(true)
+  checkInAllowLocation         Boolean  @default(false)
+  outsidePolicy                String   @default("allow_with_reason")
+  locationRequired             String   @default("flag")
+  idleTimeoutMinutesDefault    Int      @default(30)
+  idleTimeoutMinutesPrivileged Int      @default(120)
+  twoStepRoles                 String[] @default([])
+  maskPhoneByDefault           Boolean  @default(true)
+  payroll                      Json?
+  welcomeTemplate              Json?
+  updatedAt                    DateTime @updatedAt
+}
+
+model OfficeLocation {
+  id           String   @id @default(cuid())
+  name         String
+  nameKm       String?
+  latitude     Decimal  @db.Decimal(10, 7)
+  longitude    Decimal  @db.Decimal(10, 7)
+  radiusMetres Int      @default(200)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ApprovalChainConfig {
+  id          String   @id @default(cuid())
+  requestType String   @unique
+  steps       Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model LetterTemplate {
+  id               String   @id @default(cuid())
+  kind             String
+  name             String
+  bodyEn           String
+  bodyKm           String?
+  defaultLang      String   @default("both")
+  useKhmerNumerals Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([kind])
+}
+
+model AttendanceCorrection {
+  id              String   @id @default(cuid())
+  employeeId      String
+  employee        Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date            DateTime @db.Date
+  correctCheckIn  String
+  correctCheckOut String
+  reason          String
+  status          String   @default("pending")
+  submittedAt     DateTime @default(now())
+  decidedAt       DateTime?
+  decidedById     String?
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([date])
+}
+
+model ShiftSwapRequest {
+  id              String       @id @default(cuid())
+  periodId        String
+  period          RosterPeriod @relation(fields: [periodId], references: [id], onDelete: Cascade)
+  requesterId     String
+  requester       Employee     @relation("ShiftSwapRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  counterpartId   String
+  counterpart     Employee     @relation("ShiftSwapCounterpart", fields: [counterpartId], references: [id], onDelete: Cascade)
+  requesterDate   DateTime     @db.Date
+  counterpartDate DateTime     @db.Date
+  reason          String
+  status          String       @default("pending")
+  submittedAt     DateTime     @default(now())
+  decidedAt       DateTime?
+  decidedById     String?
+
+  @@index([periodId])
+  @@index([requesterId])
+  @@index([counterpartId])
+  @@index([status])
+}
+
+model ProfileChangeRequest {
+  id             String   @id @default(cuid())
+  employeeId     String
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  fields         Json
+  previousValues Json
+  status         String   @default("pending")
+  submittedAt    DateTime @default(now())
+  decidedAt      DateTime?
+  decidedById    String?
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+model OrgChangeRequest {
+  id              String    @id @default(cuid())
+  employeeId      String
+  employee        Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  kind            String
+  proposedBy      String
+  effectiveDate   DateTime  @db.Date
+  newDepartmentId String?
+  newPositionId   String?
+  newManagerId    String?
+  newBaseSalary   Decimal?  @db.Decimal(12, 2)
+  reason          String
+  status          String    @default("pending")
+  appliedAt       DateTime?
+  decidedAt       DateTime?
+  decidedById     String?
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([kind])
+}
+
+model StaffingRequest {
+  id                    String       @id @default(cuid())
+  requesterId           String
+  requester             Employee     @relation(fields: [requesterId], references: [id], onDelete: Cascade)
+  positionId            String?
+  position              Position?    @relation(fields: [positionId], references: [id], onDelete: SetNull)
+  orgPositionId         String?
+  departmentId          String
+  department            Department   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  branchId              String?
+  branch                OrgBranch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  headcount             Int
+  reason                String
+  proposeNewPosition    Boolean      @default(false)
+  proposedPositionTitle String?
+  budgetMin             Decimal?     @db.Decimal(12, 2)
+  budgetMax             Decimal?     @db.Decimal(12, 2)
+  status                String       @default("pending")
+  submittedAt           DateTime     @default(now())
+  jobId                 String?
+  job                   JobPosting?  @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  decidedAt             DateTime?
+  decidedById           String?
+
+  @@index([requesterId])
+  @@index([departmentId])
+  @@index([status])
+  @@index([jobId])
+}
+
+/// Catalog salary rule (payslip line definition)
+model SalaryRule {
+  id                   String   @id @default(cuid())
+  name                 String
+  nameKm               String?
+  code                 String   @unique
+  category             String
+  sequence             Int?
+  active               Boolean  @default(true)
+  appearsOnPayslip     Boolean  @default(true)
+  amountType           String? // fix | percentage
+  amountFix            Decimal? @db.Decimal(12, 2)
+  amountPercentage     Decimal? @db.Decimal(8, 4)
+  percentageBasedOn    String?
+  contributionRegister String?
+  description          String?
+  childRuleIds         String[] @default([])
+  meta                 Json?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([category])
+  @@index([active])
+}
+
+/// Salary structure template linking rule ids
+model SalaryStructure {
+  id          String   @id @default(cuid())
+  name        String
+  code        String   @unique
+  parentId    String?
+  companyName String
+  ruleIds     String[] @default([])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([parentId])
+}
+
+/// Singleton payroll calculation settings (id = default). Sample rates, not official.
+model PayrollConfigSettings {
+  id                  String   @id @default("default")
+  taxOnSalaryRate     Decimal  @db.Decimal(8, 4)
+  nssfEmployeeRate    Decimal  @db.Decimal(8, 4)
+  nssfEmployerRate    Decimal  @db.Decimal(8, 4)
+  otMultiplier        Decimal  @db.Decimal(8, 4)
+  workingDaysPerMonth Int
+  seniorityPerYear    Decimal  @db.Decimal(12, 2)
+  seniorityMaxYears   Int
+  probationMonths     Int
+  sampleDisclaimer    String?
+  updatedAt           DateTime @updatedAt
+}
+
+/// Monthly fund contribution register (NSSF and similar)
+model ContributionRegister {
+  id            String   @id @default(cuid())
+  month         String
+  fund          String
+  employees     Int
+  employeeShare Decimal  @db.Decimal(12, 2)
+  employerShare Decimal  @db.Decimal(12, 2)
+  status        String   @default("draft") // draft | submitted | paid
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([month])
+  @@index([fund])
+}
+
+/// Contract advantage / allowance template
+model ContractAdvantageTemplate {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  type        String // fixed | prorated | percentage
+  amount      Decimal  @db.Decimal(12, 2)
+  taxable     Boolean  @default(false)
+  active      Boolean  @default(true)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+/// Periodic incentive or bonus award
+model IncentiveAward {
+  id         String   @id @default(cuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  period     String
+  type       String
+  amount     Decimal  @db.Decimal(12, 2)
+  status     String   @default("pending") // pending | approved | paid | rejected
+  paidIn     String?
+  note       String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([period])
+}
+
+/// Salary increase cycle request; apply writes Employee.baseSalary
+model SalaryIncreaseRequest {
+  id             String    @id @default(cuid())
+  cycle          String
+  employeeId     String
+  employee       Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  currentSalary  Decimal   @db.Decimal(12, 2)
+  proposedSalary Decimal   @db.Decimal(12, 2)
+  pct            Decimal?  @db.Decimal(8, 2)
+  status         String    @default("in_review") // in_review | approved | rejected | applied
+  effectiveDate  String
+  reason         String?
+  appliedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([employeeId])
+  @@index([cycle])
+}
+
+model ExpenseClaim {
+  id          String    @id @default(cuid())
+  employeeId  String
+  employee    Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  category    String // travel | meal | equipment | medical | other
+  title       String
+  amount      Decimal   @db.Decimal(12, 2)
+  date        String
+  status      String    @default("pending") // pending | approved | rejected | returned | cancelled | paid
+  submittedAt DateTime  @default(now())
+  decidedAt   DateTime?
+  decidedById String?
+  note        String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+  @@index([date])
+}
+
+model TelegramOutbox {
+  id        String    @id @default(cuid())
+  channel   String    @default("telegram")
+  eventType String
+  recipient String?
+  payload   Json?
+  status    String    @default("queued") // queued | sent | failed | skipped
+  error     String?
+  jobRunId  String?
+  jobRun    JobRun?   @relation(fields: [jobRunId], references: [id], onDelete: SetNull)
+  createdAt DateTime  @default(now())
+  sentAt    DateTime?
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([jobRunId])
+}
+
+/// Singleton probation management settings (id = default)
+model ProbationSettings {
+  id                    String   @id @default("default")
+  defaultDurationMonths Int
+  reviewDays            Int[]    @default([])
+  categories            Json
+  ratingLabels          Json
+  selfQuestions         Json
+  reminderDaysBefore    Int
+  remindersEnabled      Boolean  @default(true)
+  scoreBands            Json
+  approvalWorkflow      String?
+  updatedAt             DateTime @updatedAt
+}
+
+model ErInvestigation {
+  id                  String   @id @default(cuid())
+  refNo               String   @unique
+  relatedType         String // complaint | grievance | conflict | disciplinary
+  relatedId           String
+  investigatorId      String
+  startDate           String
+  involvedIds         String[] @default([])
+  evidence            Json     @default("[]")
+  interviewNotes      String   @default("")
+  findings            String   @default("")
+  recommendations     String   @default("")
+  managementDecision  String?
+  outcome             String?
+  status              String   @default("in_progress")
+  priority            String   @default("medium")
+  notes               Json     @default("[]")
+  timeline            Json     @default("[]")
+  dueDate             String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([status])
+  @@index([relatedType])
+  @@index([investigatorId])
+}
+
+/// Singleton employee-relations catalogues (id = default)
+model ErSettings {
+  id                        String   @id @default("default")
+  complaintCategories       Json
+  grievanceTypes            Json
+  conflictCategories        Json
+  violationCategories       Json
+  disciplinaryActionTypes   Json
+  priorities                Json
+  workflowStatuses          Json
+  notifyOnAssignment        Boolean  @default(true)
+  notifyOnOverdue           Boolean  @default(true)
+  notifyOnManagementReview  Boolean  @default(true)
+  updatedAt                 DateTime @updatedAt
 }
